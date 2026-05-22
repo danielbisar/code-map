@@ -1,58 +1,92 @@
-﻿namespace code_map;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-class Program : IDisposable
+namespace code_map;
+
+class Program
 {
     static void Main(string[] args)
     {
         var dir = args[0];
-        using var program = new Program();
 
-        program.TraverseDirs(dir);
+        // Pass 1: collect all declared types (full name → short name)
+        var knownTypes = new Dictionary<string, string>();
+        CollectTypes(dir, knownTypes);
+
+        // Pass 2: for each type, find which other types it references
+        PrintRelations(dir, knownTypes);
     }
 
-    //private readonly StreamWriter _sw;
+    // ── Pass 1 ────────────────────────────────────────────────────────────────
 
-    public Program()
+    static void CollectTypes(string dir, Dictionary<string, string> knownTypes)
     {
-        //  _sw = new StreamWriter("code.map", false);
-    }
-
-    private void TraverseDirs(string dir)
-    {
-        string ns = string.Empty;
-
         foreach (var file in Directory.GetFiles(dir, "*.cs"))
         {
-            // simplified assumption: namespace ....
-            var lines = File.ReadAllLines(file);
+            var tree = CSharpSyntaxTree.ParseText(File.ReadAllText(file));
+            var root = tree.GetCompilationUnitRoot();
 
-            foreach (var line in lines)
+            foreach (var typeDecl in root.DescendantNodes().OfType<BaseTypeDeclarationSyntax>())
             {
-                var token = line.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-
-                if (token.Length > 1)
-                {
-                    if (token[0] == "namespace")
-                        ns = token[1];
-                    else if (token.Any(p => p == "class"))
-                    {
-                        var res = string.Format("{0}\t{1}", ns, token[token.IndexOf("class") + 1]);
-                        //_sw.WriteLine(res);
-                        Console.WriteLine(res);
-                    }
-                }
-
+                var shortName = typeDecl.Identifier.Text;
+                var fullName = $"{GetNamespace(typeDecl)}.{shortName}".TrimStart('.');
+                knownTypes.TryAdd(fullName, shortName);
             }
         }
 
-        foreach (var subDir in Directory.GetDirectories(dir))
-        {
-            TraverseDirs(subDir);
-        }
+        foreach (var sub in Directory.GetDirectories(dir))
+            CollectTypes(sub, knownTypes);
     }
 
-    public void Dispose()
+    // ── Pass 2 ────────────────────────────────────────────────────────────────
+
+    static void PrintRelations(string dir, Dictionary<string, string> knownTypes)
     {
-        //_sw.Close();
+        foreach (var file in Directory.GetFiles(dir, "*.cs"))
+        {
+            var tree = CSharpSyntaxTree.ParseText(File.ReadAllText(file));
+            var root = tree.GetCompilationUnitRoot();
+
+            foreach (var typeDecl in root.DescendantNodes().OfType<BaseTypeDeclarationSyntax>())
+            {
+                var shortName = typeDecl.Identifier.Text;
+                var fullName = $"{GetNamespace(typeDecl)}.{shortName}".TrimStart('.');
+
+                var used = typeDecl.DescendantNodes()
+                    .Select(node => node switch
+                    {
+                        IdentifierNameSyntax id => id.Identifier.Text,
+                        GenericNameSyntax gn => gn.Identifier.Text,
+                        _ => null
+                    })
+                    .Where(name => name != null && name != shortName)
+                    .SelectMany(name => knownTypes
+                        .Where(kv => kv.Value == name && kv.Key != fullName)
+                        .Select(kv => kv.Key))
+                    .ToHashSet();
+
+                if (used.Count > 0)
+                    Console.WriteLine($"{fullName} -> {string.Join(", ", used.Order())}");
+            }
+        }
+
+        foreach (var sub in Directory.GetDirectories(dir))
+            PrintRelations(sub, knownTypes);
+    }
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    static string GetNamespace(SyntaxNode node)
+    {
+        var parts = new List<string>();
+        var current = node.Parent;
+        while (current != null)
+        {
+            if (current is BaseNamespaceDeclarationSyntax ns)
+                parts.Insert(0, ns.Name.ToString());
+            current = current.Parent;
+        }
+        return string.Join(".", parts);
     }
 }
