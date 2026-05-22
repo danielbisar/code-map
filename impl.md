@@ -1,0 +1,102 @@
+# Implementation Plan
+
+## Commands
+
+### `scan <dir>`
+- Recursively walks `<dir>` for `.cs` files using Roslyn syntax trees
+- Outputs dependency lines to stdout (only types that have at least one dependency)
+- Always also writes `output.json` in the current working directory
+
+### `gen-html`
+- Reads `output.json` from the current working directory
+- Writes `output.html` to the current working directory
+- If `output.json` does not exist: prints a clear error to stderr and exits with code 1
+- No flags, no path overrides
+
+### Dispatch
+`args[0]` is the subcommand (`scan` or `gen-html`). The old bare-directory invocation (`code-map <dir>`) is dropped.
+
+---
+
+## Code organisation
+
+Three files:
+
+- `Program.cs` — entry point and subcommand dispatch only
+- `Scanner.cs` — Roslyn pass: type collection, dependency resolution, JSON serialisation
+- `HtmlGenerator.cs` — reads `output.json`, writes `output.html`
+
+---
+
+## Intermediate format — `output.json`
+
+Array of objects, one per declared type (including isolated nodes):
+
+```json
+[
+  { "from": "Namespace.ClassA", "to": ["Namespace.ClassB", "Namespace.ClassC"] },
+  { "from": "Namespace.ClassD", "to": [] }
+]
+```
+
+All declared types are included, even those with an empty `to` list.
+
+---
+
+## Scanner details
+
+### Two-pass algorithm
+
+**Pass 1 — collect all declared types**
+Walk all `.cs` files recursively. For each `BaseTypeDeclarationSyntax`, record:
+- full name: `Namespace.ShortName` (key)
+- short name: `ShortName` (value)
+
+**Pass 2 — resolve dependencies**
+For each type, resolve identifiers to known fully-qualified names using:
+1. `using` namespace directives declared in the same file (for identifier `Foo` and `using Bar;`, check `Bar.Foo`)
+2. The declaring type's own namespace
+3. Enclosing namespaces of the declaring type
+
+Match only against types in `knownTypes`; ignore all external/BCL references.
+
+### Partial classes
+Multiple `partial` declarations of the same type are merged: their `to` sets are unioned into a single node in the output.
+
+### Self-references
+A type is never added to its own `to` list.
+
+---
+
+## HTML Visualisation
+
+### Library
+Cytoscape.js 3.30.2 loaded from CDN:
+```
+https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js
+```
+Not self-contained — requires internet to open.
+
+### Layout
+Built-in **cose** (force-directed spring embedder). No plugins required.
+
+### Nodes
+- **Label**: short class name (e.g. `ClassA`)
+- **Tooltip on hover**: full qualified name (e.g. `Namespace.ClassA`) — custom CSS tooltip (not native `title`)
+- **Color**: determined by full namespace (e.g. `MyApp.Services` and `MyApp.Data` get different colors); assigned from a fixed 20-color qualitative palette, cycling if more than 20 namespaces
+- **Size**: scales linearly with total connection count (in-degree + out-degree); min 30px at degree 0, max 80px at the highest degree in the graph
+
+### Edges
+Directed arrows from the using class to the used class (A → B means A uses B).
+
+### Legend
+Fixed-position panel in the top-right corner listing each namespace with its color swatch. Hidden when there is only one namespace.
+
+### Interactivity
+- Pan and zoom (built-in)
+- **Hover**: custom CSS tooltip showing full qualified name
+- **Click**: highlights the node's direct 1-hop neighborhood (the node itself, its immediate outgoing dependencies, and immediate classes that use it); everything else is dimmed. Click again or click the background to deselect.
+- **Search box**: text input at the top; dims non-matching nodes as you type (matches against full qualified name); matching nodes remain fully visible
+
+### Isolated nodes
+Always shown — a class with no dependencies is still part of the graph.
