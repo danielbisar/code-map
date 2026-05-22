@@ -185,6 +185,15 @@ body { display: flex; flex-direction: column; height: 100vh; font-family: sans-s
 </head>
 <body>
 <div id="toolbar">
+  <label for="layout-select">Layout</label>
+  <select id="layout-select">
+    <option value="clusters">Namespace Clusters</option>
+    <option value="force">Force-directed</option>
+    <option value="circular">Circular</option>
+    <option value="random">Random</option>
+  </select>
+  <span id="animate-wrapper" style="display:none"><input type="checkbox" id="animate-layout"> <label for="animate-layout">Animate</label></span>
+  <span id="separate-wrapper" style="display:none"><input type="checkbox" id="separate-unused"> <label for="separate-unused">Separate unused</label></span>
   <label for="ns-filter">Namespace</label>
   <select id="ns-filter"><option value="">All namespaces</option></select>
   <label for="search">Search</label>
@@ -196,6 +205,7 @@ body { display: flex; flex-direction: column; height: 100vh; font-family: sans-s
 <div id="legend"><h4>Namespaces</h4></div>
 <script src="https://cdn.jsdelivr.net/npm/graphology@0.26.0/dist/graphology.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <script>
 const nodesData = __NODES__;
 const edgesData = __EDGES__;
@@ -210,6 +220,11 @@ nodesData.forEach(n => {
 edgesData.forEach(e => {
   try { graph.addEdge(e.source, e.target, { size: 1, color: '#4a5568' }); } catch(_) {}
 });
+
+// In-degree index (computed once; used for "Separate unused" layout option)
+const inDegree = {};
+graph.nodes().forEach(n => { inDegree[n] = 0; });
+graph.forEachEdge((_, _a, _s, target) => { inDegree[target]++; });
 
 // State
 let activeNs = '';
@@ -247,9 +262,12 @@ legendData.forEach(item => {
 
 function updateCount() {
   const total = graph.order;
-  const visible = activeNs
-    ? graph.nodes().filter(n => graph.getNodeAttribute(n, 'ns') === activeNs).length
-    : total;
+  const visible = graph.nodes().filter(n => {
+    const d = graph.getNodeAttributes(n);
+    if (activeNs && d.ns !== activeNs) return false;
+    if (searchQuery && !d.fullName.toLowerCase().includes(searchQuery)) return false;
+    return true;
+  }).length;
   document.getElementById('node-count').textContent =
     visible === total ? `${total} nodes` : `${visible} / ${total} nodes`;
 }
@@ -321,6 +339,173 @@ nsFilter.addEventListener('change', function () {
 // Search
 document.getElementById('search').addEventListener('input', function () {
   searchQuery = this.value.toLowerCase().trim();
+  renderer.refresh();
+  updateCount();
+});
+
+// Layout
+let fa2Running = false;
+let fa2AnimFrame = null;
+let simulation = null;
+let simNodes = null;
+const animateWrapper = document.getElementById('animate-wrapper');
+const animateCheckbox = document.getElementById('animate-layout');
+const separateWrapper = document.getElementById('separate-wrapper');
+const separateCheckbox = document.getElementById('separate-unused');
+separateWrapper.style.display = '';
+
+function clusterLayout(nodeIds, rowOffset) {
+  const groups = {};
+  nodeIds.forEach(id => {
+    const ns = graph.getNodeAttribute(id, 'ns');
+    if (!groups[ns]) groups[ns] = [];
+    groups[ns].push(id);
+  });
+  const groupList = Object.values(groups);
+  const cols = Math.max(1, Math.ceil(Math.sqrt(groupList.length)));
+  const spacing = 1000;
+  groupList.forEach((group, gi) => {
+    const cx = (gi % cols) * spacing;
+    const cy = (Math.floor(gi / cols) + rowOffset) * spacing;
+    const n = group.length;
+    const radius = n <= 1 ? 0 : Math.min(400, n * 20);
+    group.forEach((id, i) => {
+      const angle = 2 * Math.PI * i / Math.max(1, n);
+      graph.setNodeAttribute(id, 'x', cx + radius * Math.cos(angle));
+      graph.setNodeAttribute(id, 'y', cy + radius * Math.sin(angle));
+    });
+  });
+  return Math.ceil(groupList.length / cols);
+}
+
+function applySeparatedClusters() {
+  const used = graph.nodes().filter(n => inDegree[n] > 0);
+  const unused = graph.nodes().filter(n => inDegree[n] === 0);
+  const usedRows = clusterLayout(used, 0);
+  clusterLayout(unused, usedRows + 1);
+}
+
+function buildSimulation() {
+  const nodes = graph.nodes().map(n => ({
+    id: n,
+    x: graph.getNodeAttribute(n, 'x'),
+    y: graph.getNodeAttribute(n, 'y')
+  }));
+  const links = graph.edges().map(e => ({
+    source: graph.source(e),
+    target: graph.target(e)
+  }));
+  simulation = d3.forceSimulation(nodes)
+    .force('charge', d3.forceManyBody().strength(-300))
+    .force('link', d3.forceLink(links).id(d => d.id).distance(150))
+    .force('center', d3.forceCenter(0, 0))
+    .stop();
+  return nodes;
+}
+
+function syncPositions(nodes) {
+  nodes.forEach(n => {
+    graph.setNodeAttribute(n.id, 'x', n.x);
+    graph.setNodeAttribute(n.id, 'y', n.y);
+  });
+}
+
+function stopFA2() {
+  fa2Running = false;
+  if (fa2AnimFrame) { cancelAnimationFrame(fa2AnimFrame); fa2AnimFrame = null; }
+  simulation = null; simNodes = null;
+}
+
+function runFA2Animated() {
+  fa2Running = true;
+  simNodes = buildSimulation();
+  (function step() {
+    if (!fa2Running) return;
+    const frameDeadline = performance.now() + 16;
+    while (performance.now() < frameDeadline && simulation.alpha() > simulation.alphaMin()) {
+      simulation.tick();
+    }
+    syncPositions(simNodes);
+    renderer.refresh();
+    if (simulation.alpha() > simulation.alphaMin()) {
+      fa2AnimFrame = requestAnimationFrame(step);
+    } else {
+      fa2Running = false;
+    }
+  })();
+}
+
+function applyLayout(name) {
+  stopFA2();
+  animateWrapper.style.display = 'none';
+  separateWrapper.style.display = 'none';
+  if (name === 'clusters') {
+    separateWrapper.style.display = '';
+    if (separateCheckbox.checked) {
+      applySeparatedClusters();
+    } else {
+      nodesData.forEach(n => {
+        graph.setNodeAttribute(n.id, 'x', n.x);
+        graph.setNodeAttribute(n.id, 'y', n.y);
+      });
+    }
+  } else if (name === 'circular') {
+    const ns = graph.nodes(), cnt = ns.length, r = Math.max(300, cnt * 25);
+    ns.forEach((n, i) => {
+      const a = 2 * Math.PI * i / Math.max(1, cnt);
+      graph.setNodeAttribute(n, 'x', r * Math.cos(a));
+      graph.setNodeAttribute(n, 'y', r * Math.sin(a));
+    });
+  } else if (name === 'random') {
+    const spread = Math.max(2000, graph.order * 30);
+    graph.nodes().forEach(n => {
+      graph.setNodeAttribute(n, 'x', (Math.random() - 0.5) * spread);
+      graph.setNodeAttribute(n, 'y', (Math.random() - 0.5) * spread);
+    });
+  } else if (name === 'force') {
+    animateWrapper.style.display = '';
+    if (animateCheckbox.checked) {
+      runFA2Animated(); return;
+    } else {
+      simNodes = buildSimulation();
+      const deadline = performance.now() + 5000;
+      let iters = 0;
+      while (performance.now() < deadline && simulation.alpha() > simulation.alphaMin()) {
+        simulation.tick(); iters++;
+      }
+      syncPositions(simNodes);
+      if (simulation.alpha() > simulation.alphaMin())
+        console.log(`[code-map] force layout timed out after ${iters} iterations (${graph.order} nodes)`);
+      simulation = null; simNodes = null;
+    }
+  }
+  renderer.refresh();
+}
+
+document.getElementById('layout-select').addEventListener('change', function () {
+  applyLayout(this.value);
+});
+
+animateCheckbox.addEventListener('change', function () {
+  if (document.getElementById('layout-select').value !== 'force') return;
+  if (this.checked) {
+    runFA2Animated();
+  } else {
+    stopFA2();
+    renderer.refresh();
+  }
+});
+
+separateCheckbox.addEventListener('change', function () {
+  if (document.getElementById('layout-select').value !== 'clusters') return;
+  if (this.checked) {
+    applySeparatedClusters();
+  } else {
+    nodesData.forEach(n => {
+      graph.setNodeAttribute(n.id, 'x', n.x);
+      graph.setNodeAttribute(n.id, 'y', n.y);
+    });
+  }
   renderer.refresh();
 });
 </script>
