@@ -26,52 +26,52 @@ static class HtmlGenerator
             File.ReadAllText("output.json"),
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? [];
 
-        // Drop the empty-name sentinel entry
         nodes = nodes.Where(n => !string.IsNullOrEmpty(n.From)).ToArray();
 
-        // Compute degrees
+        var knownIds = new HashSet<string>(nodes.Select(n => n.From));
+
         var inDeg = nodes.ToDictionary(n => n.From, _ => 0);
-        var outDeg = nodes.ToDictionary(n => n.From, n => n.To.Length);
+        var outDeg = nodes.ToDictionary(n => n.From, n => n.To.Count(t => knownIds.Contains(t)));
         foreach (var node in nodes)
             foreach (var to in node.To)
                 if (inDeg.ContainsKey(to)) inDeg[to]++;
 
-        int maxDeg = nodes.Length == 0 ? 0 :
-            nodes.Max(n => inDeg.GetValueOrDefault(n.From) + outDeg.GetValueOrDefault(n.From));
+        int maxDeg = nodes.Length == 0 ? 0 : nodes.Max(n => inDeg[n.From] + outDeg[n.From]);
 
-        // Namespace → color index
         var nsColor = new Dictionary<string, int>();
-        int idx = 0;
+        int colorIdx = 0;
         foreach (var node in nodes)
         {
             var ns = Namespace(node.From);
-            if (!nsColor.ContainsKey(ns))
-                nsColor[ns] = idx++ % Palette.Length;
+            if (!nsColor.ContainsKey(ns)) nsColor[ns] = colorIdx++ % Palette.Length;
         }
 
-        // Build Cytoscape elements JSON
-        var elements = new List<object>();
-        foreach (var node in nodes)
+        var positions = ComputeLayout(nodes);
+
+        var nodesList = nodes.Select(node =>
         {
-            int deg = inDeg.GetValueOrDefault(node.From) + outDeg.GetValueOrDefault(node.From);
-            double size = maxDeg == 0 ? 30.0 : 30.0 + (double)deg / maxDeg * 50.0;
-            elements.Add(new
+            int deg = inDeg[node.From] + outDeg[node.From];
+            double size = maxDeg == 0 ? 5.0 : 3.0 + (double)deg / maxDeg * 17.0;
+            var (x, y) = positions[node.From];
+            return new
             {
-                data = new
-                {
-                    id = node.From,
-                    label = ShortName(node.From),
-                    fullName = node.From,
-                    ns = Namespace(node.From),
-                    color = Palette[nsColor[Namespace(node.From)]],
-                    size = Math.Round(size, 1)
-                }
-            });
-            foreach (var to in node.To)
-                elements.Add(new { data = new { source = node.From, target = to } });
-        }
+                id = node.From,
+                label = ShortName(node.From),
+                fullName = node.From,
+                ns = Namespace(node.From),
+                color = Palette[nsColor[Namespace(node.From)]],
+                size = Math.Round(size, 1),
+                x = Math.Round(x, 2),
+                y = Math.Round(y, 2)
+            };
+        });
 
-        // Build legend JSON
+        var edgesList = nodes
+            .SelectMany(node => node.To
+                .Where(t => knownIds.Contains(t))
+                .Select(t => new { source = node.From, target = t }))
+            .ToList();
+
         var legendItems = nsColor
             .OrderBy(kv => kv.Key)
             .Select(kv => new
@@ -82,16 +82,44 @@ static class HtmlGenerator
             });
 
         var opts = new JsonSerializerOptions { WriteIndented = false };
-        string elementsJson = JsonSerializer.Serialize(elements, opts);
+        string nodesJson = JsonSerializer.Serialize(nodesList, opts);
+        string edgesJson = JsonSerializer.Serialize(edgesList, opts);
         string legendJson = JsonSerializer.Serialize(legendItems, opts);
         string legendDisplay = nsColor.Count > 1 ? "block" : "none";
 
         File.WriteAllText("output.html",
             HtmlTemplate
-                .Replace("__ELEMENTS__", elementsJson)
+                .Replace("__NODES__", nodesJson)
+                .Replace("__EDGES__", edgesJson)
                 .Replace("__LEGEND__", legendJson)
                 .Replace("__LEGEND_DISPLAY__", legendDisplay));
         return 0;
+    }
+
+    // Namespace-clustered layout: each namespace occupies a grid cell, nodes
+    // arranged in a circle within that cell. Zero browser-side layout work needed.
+    static Dictionary<string, (double x, double y)> ComputeLayout(GraphNode[] nodes)
+    {
+        var positions = new Dictionary<string, (double, double)>();
+        var groups = nodes.GroupBy(n => Namespace(n.From)).ToList();
+        int cols = Math.Max(1, (int)Math.Ceiling(Math.Sqrt(groups.Count)));
+        const double spacing = 1000.0;
+
+        for (int gi = 0; gi < groups.Count; gi++)
+        {
+            var group = groups[gi].ToList();
+            double cx = (gi % cols) * spacing;
+            double cy = (gi / cols) * spacing;
+            int n = group.Count;
+            double radius = n <= 1 ? 0.0 : Math.Min(400.0, n * 20.0);
+
+            for (int i = 0; i < n; i++)
+            {
+                double angle = 2.0 * Math.PI * i / Math.Max(1, n);
+                positions[group[i].From] = (cx + radius * Math.Cos(angle), cy + radius * Math.Sin(angle));
+            }
+        }
+        return positions;
     }
 
     static string Namespace(string fullName)
@@ -121,7 +149,7 @@ body { display: flex; flex-direction: column; height: 100vh; font-family: sans-s
 #search::placeholder { color: #555; }
 #ns-filter { padding: 5px 10px; border-radius: 4px; border: 1px solid #0f3460; background: #1a1a2e; color: #eee; font-size: 13px; max-width: 320px; }
 #node-count { font-size: 12px; color: #666; margin-left: auto; }
-#cy { flex: 1; }
+#sigma-container { flex: 1; background: #1a1a2e; }
 #tooltip {
   position: fixed;
   background: rgba(0,0,0,0.85);
@@ -163,35 +191,52 @@ body { display: flex; flex-direction: column; height: 100vh; font-family: sans-s
   <input id="search" type="search" placeholder="Filter by fully qualified name…">
   <span id="node-count"></span>
 </div>
-<div id="cy"></div>
+<div id="sigma-container"></div>
 <div id="tooltip"></div>
 <div id="legend"><h4>Namespaces</h4></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/graphology@0.26.0/dist/graphology.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js"></script>
 <script>
-const elements = __ELEMENTS__;
+const nodesData = __NODES__;
+const edgesData = __EDGES__;
 const legendData = __LEGEND__;
 
-// Populate legend
+// Build directed graph
+const graph = new graphology.DirectedGraph();
+nodesData.forEach(n => {
+  graph.addNode(n.id, { x: n.x, y: n.y, size: n.size, color: n.color,
+                        label: n.label, fullName: n.fullName, ns: n.ns });
+});
+edgesData.forEach(e => {
+  try { graph.addEdge(e.source, e.target, { size: 1, color: '#4a5568' }); } catch(_) {}
+});
+
+// State
+let activeNs = '';
+let searchQuery = '';
+let selectedNode = null;
+
+// Legend
 const legend = document.getElementById('legend');
 legendData.forEach(item => {
   const div = document.createElement('div');
   div.className = 'legend-item';
-  div.dataset.ns = item.ns;
   const swatch = document.createElement('div');
   swatch.className = 'legend-swatch';
   swatch.style.background = item.color;
-  const label = document.createElement('span');
-  label.textContent = item.label;
+  const lbl = document.createElement('span');
+  lbl.textContent = item.label;
   div.appendChild(swatch);
-  div.appendChild(label);
+  div.appendChild(lbl);
   legend.appendChild(div);
   div.addEventListener('click', () => {
-    document.getElementById('ns-filter').value = item.ns;
-    document.getElementById('ns-filter').dispatchEvent(new Event('change'));
+    const sel = document.getElementById('ns-filter');
+    sel.value = sel.value === item.ns ? '' : item.ns;
+    sel.dispatchEvent(new Event('change'));
   });
 });
 
-// Populate namespace dropdown
+// Namespace dropdown
 const nsFilter = document.getElementById('ns-filter');
 legendData.forEach(item => {
   const opt = document.createElement('option');
@@ -200,134 +245,83 @@ legendData.forEach(item => {
   nsFilter.appendChild(opt);
 });
 
-const layoutOpts = { name: 'cose', animate: false, padding: 50, randomize: true };
-
-const cy = cytoscape({
-  container: document.getElementById('cy'),
-  elements,
-  style: [
-    {
-      selector: 'node',
-      style: {
-        'label': 'data(label)',
-        'width': 'data(size)',
-        'height': 'data(size)',
-        'background-color': 'data(color)',
-        'color': '#fff',
-        'text-valign': 'center',
-        'text-halign': 'center',
-        'font-size': '11px',
-        'text-outline-width': 1,
-        'text-outline-color': 'data(color)',
-        'min-zoomed-font-size': 6
-      }
-    },
-    {
-      selector: 'edge',
-      style: {
-        'width': 1.5,
-        'line-color': '#4a5568',
-        'target-arrow-color': '#4a5568',
-        'target-arrow-shape': 'triangle',
-        'curve-style': 'bezier',
-        'opacity': 0.7
-      }
-    },
-    {
-      selector: '.dimmed',
-      style: { 'opacity': 0.08 }
-    },
-    {
-      selector: '.highlighted',
-      style: { 'opacity': 1 }
-    },
-    {
-      selector: '.search-dim',
-      style: { 'opacity': 0.06 }
-    }
-  ],
-  layout: layoutOpts
-});
-
 function updateCount() {
-  const visible = cy.nodes().filter(n => n.style('display') !== 'none').length;
-  const total = cy.nodes().length;
+  const total = graph.order;
+  const visible = activeNs
+    ? graph.nodes().filter(n => graph.getNodeAttribute(n, 'ns') === activeNs).length
+    : total;
   document.getElementById('node-count').textContent =
     visible === total ? `${total} nodes` : `${visible} / ${total} nodes`;
 }
 updateCount();
 
-// Namespace filter
-nsFilter.addEventListener('change', function () {
-  const ns = this.value;
-  cy.elements().removeClass('dimmed highlighted search-dim');
-
-  if (!ns) {
-    cy.elements().style('display', 'element');
-    cy.layout(layoutOpts).run();
-    updateCount();
-    return;
+// Sigma renderer (WebGL)
+const renderer = new Sigma(graph, document.getElementById('sigma-container'), {
+  renderEdgeLabels: false,
+  defaultEdgeType: 'arrow',
+  labelColor: { color: '#ffffff' },
+  labelSize: 12,
+  nodeReducer: (node, data) => {
+    const res = { ...data };
+    if (activeNs && data.ns !== activeNs) { res.hidden = true; return res; }
+    if (searchQuery && !data.fullName.toLowerCase().includes(searchQuery)) {
+      res.color = '#2a2a40'; res.label = '';
+    }
+    if (selectedNode !== null && node !== selectedNode) {
+      const neighbors = graph.neighbors(selectedNode);
+      if (!neighbors.includes(node)) { res.color = '#2a2a40'; res.label = ''; }
+    }
+    return res;
+  },
+  edgeReducer: (edge, data) => {
+    const res = { ...data };
+    const src = graph.source(edge);
+    const tgt = graph.target(edge);
+    if (activeNs) {
+      if (graph.getNodeAttribute(src, 'ns') !== activeNs ||
+          graph.getNodeAttribute(tgt, 'ns') !== activeNs) {
+        res.hidden = true; return res;
+      }
+    }
+    if (selectedNode !== null && src !== selectedNode && tgt !== selectedNode) {
+      res.hidden = true;
+    }
+    return res;
   }
-
-  cy.nodes().forEach(n => {
-    n.style('display', n.data('ns') === ns ? 'element' : 'none');
-  });
-  cy.edges().forEach(e => {
-    const src = cy.$id(e.data('source'));
-    const tgt = cy.$id(e.data('target'));
-    const show = src.style('display') !== 'none' && tgt.style('display') !== 'none';
-    e.style('display', show ? 'element' : 'none');
-  });
-
-  // Re-layout only visible nodes
-  const visible = cy.nodes().filter(n => n.style('display') !== 'none');
-  visible.layout({ ...layoutOpts, animate: true }).run();
-  updateCount();
 });
 
 // Tooltip
 const tooltip = document.getElementById('tooltip');
-cy.on('mouseover', 'node', evt => {
-  tooltip.textContent = evt.target.data('fullName');
+renderer.on('enterNode', ({ node }) => {
+  tooltip.textContent = graph.getNodeAttribute(node, 'fullName');
   tooltip.style.display = 'block';
 });
-cy.on('mousemove', 'node', evt => {
-  tooltip.style.left = (evt.originalEvent.clientX + 14) + 'px';
-  tooltip.style.top  = (evt.originalEvent.clientY - 10) + 'px';
+renderer.on('leaveNode', () => { tooltip.style.display = 'none'; });
+document.getElementById('sigma-container').addEventListener('mousemove', e => {
+  tooltip.style.left = (e.clientX + 14) + 'px';
+  tooltip.style.top  = (e.clientY - 10) + 'px';
 });
-cy.on('mouseout', 'node', () => { tooltip.style.display = 'none'; });
 
 // Click: highlight 1-hop neighbourhood
-let selected = null;
-cy.on('tap', 'node', evt => {
-  const node = evt.target;
-  if (selected === node) {
-    cy.elements().removeClass('dimmed highlighted');
-    selected = null;
-    return;
-  }
-  selected = node;
-  cy.elements().removeClass('dimmed highlighted').addClass('dimmed');
-  node.closedNeighborhood().removeClass('dimmed').addClass('highlighted');
+renderer.on('clickNode', ({ node }) => {
+  selectedNode = selectedNode === node ? null : node;
+  renderer.refresh();
 });
-cy.on('tap', evt => {
-  if (evt.target === cy) {
-    cy.elements().removeClass('dimmed highlighted');
-    selected = null;
-  }
+renderer.on('clickStage', () => {
+  if (selectedNode !== null) { selectedNode = null; renderer.refresh(); }
+});
+
+// Namespace filter
+nsFilter.addEventListener('change', function () {
+  activeNs = this.value;
+  renderer.refresh();
+  updateCount();
 });
 
 // Search
 document.getElementById('search').addEventListener('input', function () {
-  const q = this.value.toLowerCase().trim();
-  if (!q) {
-    cy.nodes().removeClass('search-dim');
-    return;
-  }
-  cy.nodes().forEach(node => {
-    const matches = node.data('fullName').toLowerCase().includes(q);
-    node.toggleClass('search-dim', !matches);
-  });
+  searchQuery = this.value.toLowerCase().trim();
+  renderer.refresh();
 });
 </script>
 </body>
