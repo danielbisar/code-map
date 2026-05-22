@@ -84,6 +84,14 @@ The generated HTML provides an interactive graph powered by Sigma.js (WebGL):
 ]
 ```
 
+## Example output
+
+[output.json](doc/example/Medja/output.json)
+[output.html](doc/example/Medja/output.html)
+
+![Namespace clustered view](doc/example/Medja/namespace_clusters.png)
+![Force directed view](doc/example/Medja/force_directed.png)
+
 ## License
 
 MIT
