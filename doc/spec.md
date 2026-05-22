@@ -71,20 +71,21 @@ A type is never added to its own `to` list.
 ## HTML Visualisation
 
 ### Library
-Cytoscape.js 3.30.2 loaded from CDN:
+Graphology 0.26.0 + Sigma.js 2.4.0 (WebGL renderer), both loaded from CDN:
 ```
-https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js
+https://cdn.jsdelivr.net/npm/graphology@0.26.0/dist/graphology.umd.min.js
+https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js
 ```
 Not self-contained — requires internet to open.
 
 ### Layout
-Built-in **cose** (force-directed spring embedder). No plugins required.
+Pre-computed server-side namespace-clustered layout: namespaces are arranged in a grid (ceil(√N) columns), nodes within each namespace arranged in a circle. No browser-side layout computation.
 
 ### Nodes
 - **Label**: short class name (e.g. `ClassA`)
 - **Tooltip on hover**: full qualified name (e.g. `Namespace.ClassA`) — custom CSS tooltip (not native `title`)
 - **Color**: determined by full namespace (e.g. `MyApp.Services` and `MyApp.Data` get different colors); assigned from a fixed 20-color qualitative palette, cycling if more than 20 namespaces
-- **Size**: scales linearly with total connection count (in-degree + out-degree); min 30px at degree 0, max 80px at the highest degree in the graph
+- **Size**: scales linearly with total connection count (in-degree + out-degree); Sigma.js size units 3 (degree 0) to 20 (max degree)
 
 ### Edges
 Directed arrows from the using class to the used class (A → B means A uses B).
@@ -96,6 +97,7 @@ Fixed-position panel in the top-right corner listing each namespace with its col
 - Pan and zoom (built-in)
 - **Hover**: custom CSS tooltip showing full qualified name
 - **Click**: highlights the node's direct 1-hop neighborhood (the node itself, its immediate outgoing dependencies, and immediate classes that use it); everything else is dimmed. Click again or click the background to deselect.
+- **Namespace filter**: dropdown in the toolbar listing all namespaces; selecting one shows only nodes (and edges) within that namespace, hiding all others. Clicking a legend item toggles the same filter. Clicking again or selecting "All namespaces" resets.
 - **Search box**: text input at the top; dims non-matching nodes as you type (matches against full qualified name); matching nodes remain fully visible
 
 ### Isolated nodes
