@@ -193,7 +193,7 @@ body { display: flex; flex-direction: column; height: 100vh; font-family: sans-s
     <option value="random">Random</option>
   </select>
   <span id="animate-wrapper" style="display:none"><input type="checkbox" id="animate-layout"> <label for="animate-layout">Animate</label></span>
-  <span id="separate-wrapper" style="display:none"><input type="checkbox" id="separate-unused"> <label for="separate-unused">Separate unused</label></span>
+  <span id="separate-wrapper"><input type="checkbox" id="separate-unused"> <label for="separate-unused">Separate unused</label></span>
   <label for="ns-filter">Namespace</label>
   <select id="ns-filter"><option value="">All namespaces</option></select>
   <label for="search">Search</label>
@@ -352,7 +352,6 @@ const animateWrapper = document.getElementById('animate-wrapper');
 const animateCheckbox = document.getElementById('animate-layout');
 const separateWrapper = document.getElementById('separate-wrapper');
 const separateCheckbox = document.getElementById('separate-unused');
-separateWrapper.style.display = '';
 
 function clusterLayout(nodeIds, rowOffset) {
   const groups = {};
