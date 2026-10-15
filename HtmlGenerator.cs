@@ -1,11 +1,10 @@
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace code_map;
 
 static class HtmlGenerator
 {
-    record GraphNode(string From, string[] To);
-
     static readonly string[] Palette =
     [
         "#4e79a7", "#f28e2b", "#e15759", "#76b7b2", "#59a14f",
@@ -22,19 +21,13 @@ static class HtmlGenerator
             return 1;
         }
 
-        var nodes = JsonSerializer.Deserialize<GraphNode[]>(
-            File.ReadAllText("output.json"),
-            new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? [];
-
-        nodes = nodes.Where(n => !string.IsNullOrEmpty(n.From)).ToArray();
-
-        var knownIds = new HashSet<string>(nodes.Select(n => n.From));
+        var nodes = ReadGraph(File.ReadAllText("output.json"));
 
         var inDeg = nodes.ToDictionary(n => n.From, _ => 0);
-        var outDeg = nodes.ToDictionary(n => n.From, n => n.To.Count(t => knownIds.Contains(t)));
+        var outDeg = nodes.ToDictionary(n => n.From, n => n.To.Length);
         foreach (var node in nodes)
             foreach (var to in node.To)
-                if (inDeg.ContainsKey(to)) inDeg[to]++;
+                inDeg[to]++;
 
         int maxDeg = nodes.Length == 0 ? 0 : nodes.Max(n => inDeg[n.From] + outDeg[n.From]);
 
@@ -67,9 +60,7 @@ static class HtmlGenerator
         });
 
         var edgesList = nodes
-            .SelectMany(node => node.To
-                .Where(t => knownIds.Contains(t))
-                .Select(t => new { source = node.From, target = t }))
+            .SelectMany(node => node.To.Select(t => new { source = node.From, target = t }))
             .ToList();
 
         var legendItems = nsColor
@@ -88,12 +79,42 @@ static class HtmlGenerator
         string legendDisplay = nsColor.Count > 1 ? "block" : "none";
 
         File.WriteAllText("output.html",
-            HtmlTemplate
-                .Replace("__NODES__", nodesJson)
-                .Replace("__EDGES__", edgesJson)
-                .Replace("__LEGEND__", legendJson)
-                .Replace("__LEGEND_DISPLAY__", legendDisplay));
+            Regex.Replace(HtmlTemplate, "__(NODES|EDGES|LEGEND|LEGEND_DISPLAY)__", match => match.Value switch
+            {
+                "__NODES__" => nodesJson,
+                "__EDGES__" => edgesJson,
+                "__LEGEND__" => legendJson,
+                "__LEGEND_DISPLAY__" => legendDisplay,
+                _ => throw new InvalidOperationException("Unknown template placeholder.")
+            }));
         return 0;
+    }
+
+    internal static GraphNode[] ReadGraph(string json)
+    {
+        var input = JsonSerializer.Deserialize<GraphNode?[]>(json,
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
+            ?? throw new InvalidDataException("Graph must be a JSON array, not null.");
+        var nodes = new List<GraphNode>();
+        var ids = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var node in input)
+        {
+            if (node == null || string.IsNullOrWhiteSpace(node.From) || node.To == null ||
+                node.To.Any(string.IsNullOrWhiteSpace))
+                throw new InvalidDataException("Each graph node needs a nonempty 'from' and a 'to' array of nonempty strings.");
+            if (!ids.Add(node.From))
+                throw new InvalidDataException($"Duplicate graph node: {node.From}");
+            if (node.To.Distinct(StringComparer.Ordinal).Count() != node.To.Length)
+                throw new InvalidDataException($"Duplicate dependency in node: {node.From}");
+            if (node.To.Contains(node.From, StringComparer.Ordinal))
+                throw new InvalidDataException($"Self-reference in node: {node.From}");
+            nodes.Add(node);
+        }
+        foreach (var node in nodes)
+            foreach (var target in node.To)
+                if (!ids.Contains(target))
+                    throw new InvalidDataException($"Unknown dependency '{target}' in node '{node.From}'.");
+        return nodes.ToArray();
     }
 
     // Namespace-clustered layout: each namespace occupies a grid cell, nodes
@@ -139,7 +160,7 @@ static class HtmlGenerator
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Class Dependency Map</title>
+<title>C# Dependency Explorer</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { display: flex; flex-direction: column; height: 100vh; font-family: sans-serif; background: #1a1a2e; color: #eee; }
@@ -147,7 +168,7 @@ body { display: flex; flex-direction: column; height: 100vh; font-family: sans-s
 #toolbar label { font-size: 13px; color: #aaa; }
 #search { padding: 5px 10px; border-radius: 4px; border: 1px solid #0f3460; background: #1a1a2e; color: #eee; font-size: 13px; width: 280px; }
 #search::placeholder { color: #555; }
-#ns-filter { padding: 5px 10px; border-radius: 4px; border: 1px solid #0f3460; background: #1a1a2e; color: #eee; font-size: 13px; max-width: 320px; }
+#ns-filter, #layout-select { padding: 5px 10px; border-radius: 4px; border: 1px solid #0f3460; background: #1a1a2e; color: #eee; font-size: 13px; max-width: 320px; }
 #node-count { font-size: 12px; color: #666; margin-left: auto; }
 #sigma-container { flex: 1; background: #1a1a2e; }
 #tooltip {
@@ -193,7 +214,7 @@ body { display: flex; flex-direction: column; height: 100vh; font-family: sans-s
     <option value="random">Random</option>
   </select>
   <span id="animate-wrapper" style="display:none"><input type="checkbox" id="animate-layout"> <label for="animate-layout">Animate</label></span>
-  <span id="separate-wrapper"><input type="checkbox" id="separate-unused"> <label for="separate-unused">Separate unused</label></span>
+  <span id="separate-wrapper" title="No detected incoming references does not mean unused or dead code"><input type="checkbox" id="separate-unreferenced"> <label for="separate-unreferenced">Separate zero-incoming</label></span>
   <label for="ns-filter">Namespace</label>
   <select id="ns-filter"><option value="">All namespaces</option></select>
   <label for="search">Search</label>
@@ -205,7 +226,7 @@ body { display: flex; flex-direction: column; height: 100vh; font-family: sans-s
 <div id="legend"><h4>Namespaces</h4></div>
 <script src="https://cdn.jsdelivr.net/npm/graphology@0.26.0/dist/graphology.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script>
 const nodesData = __NODES__;
 const edgesData = __EDGES__;
@@ -218,16 +239,16 @@ nodesData.forEach(n => {
                         label: n.label, fullName: n.fullName, ns: n.ns });
 });
 edgesData.forEach(e => {
-  try { graph.addEdge(e.source, e.target, { size: 1, color: '#4a5568' }); } catch(_) {}
+  graph.addEdge(e.source, e.target, { size: 1, color: '#4a5568' });
 });
 
-// In-degree index (computed once; used for "Separate unused" layout option)
-const inDegree = {};
+// Zero incoming edges describe this scan, not dead-code or runtime reachability.
+const inDegree = Object.create(null);
 graph.nodes().forEach(n => { inDegree[n] = 0; });
 graph.forEachEdge((_, _a, _s, target) => { inDegree[target]++; });
 
 // State
-let activeNs = '';
+let activeNs = null;
 let searchQuery = '';
 let selectedNode = null;
 
@@ -246,7 +267,8 @@ legendData.forEach(item => {
   legend.appendChild(div);
   div.addEventListener('click', () => {
     const sel = document.getElementById('ns-filter');
-    sel.value = sel.value === item.ns ? '' : item.ns;
+    const value = JSON.stringify(item.ns);
+    sel.value = sel.value === value ? '' : value;
     sel.dispatchEvent(new Event('change'));
   });
 });
@@ -255,7 +277,7 @@ legendData.forEach(item => {
 const nsFilter = document.getElementById('ns-filter');
 legendData.forEach(item => {
   const opt = document.createElement('option');
-  opt.value = item.ns;
+  opt.value = JSON.stringify(item.ns);
   opt.textContent = item.label;
   nsFilter.appendChild(opt);
 });
@@ -264,7 +286,7 @@ function updateCount() {
   const total = graph.order;
   const visible = graph.nodes().filter(n => {
     const d = graph.getNodeAttributes(n);
-    if (activeNs && d.ns !== activeNs) return false;
+    if (activeNs !== null && d.ns !== activeNs) return false;
     if (searchQuery && !d.fullName.toLowerCase().includes(searchQuery)) return false;
     return true;
   }).length;
@@ -281,7 +303,7 @@ const renderer = new Sigma(graph, document.getElementById('sigma-container'), {
   labelSize: 12,
   nodeReducer: (node, data) => {
     const res = { ...data };
-    if (activeNs && data.ns !== activeNs) { res.hidden = true; return res; }
+    if (activeNs !== null && data.ns !== activeNs) { res.hidden = true; return res; }
     if (searchQuery && !data.fullName.toLowerCase().includes(searchQuery)) {
       res.color = '#2a2a40'; res.label = '';
     }
@@ -295,7 +317,7 @@ const renderer = new Sigma(graph, document.getElementById('sigma-container'), {
     const res = { ...data };
     const src = graph.source(edge);
     const tgt = graph.target(edge);
-    if (activeNs) {
+    if (activeNs !== null) {
       if (graph.getNodeAttribute(src, 'ns') !== activeNs ||
           graph.getNodeAttribute(tgt, 'ns') !== activeNs) {
         res.hidden = true; return res;
@@ -331,7 +353,7 @@ renderer.on('clickStage', () => {
 
 // Namespace filter
 nsFilter.addEventListener('change', function () {
-  activeNs = this.value;
+  activeNs = this.value === '' ? null : JSON.parse(this.value);
   renderer.refresh();
   updateCount();
 });
@@ -344,17 +366,17 @@ document.getElementById('search').addEventListener('input', function () {
 });
 
 // Layout
-let fa2Running = false;
-let fa2AnimFrame = null;
+let forceRunning = false;
+let forceAnimFrame = null;
 let simulation = null;
 let simNodes = null;
 const animateWrapper = document.getElementById('animate-wrapper');
 const animateCheckbox = document.getElementById('animate-layout');
 const separateWrapper = document.getElementById('separate-wrapper');
-const separateCheckbox = document.getElementById('separate-unused');
+const separateCheckbox = document.getElementById('separate-unreferenced');
 
 function clusterLayout(nodeIds, rowOffset) {
-  const groups = {};
+  const groups = Object.create(null);
   nodeIds.forEach(id => {
     const ns = graph.getNodeAttribute(id, 'ns');
     if (!groups[ns]) groups[ns] = [];
@@ -378,10 +400,10 @@ function clusterLayout(nodeIds, rowOffset) {
 }
 
 function applySeparatedClusters() {
-  const used = graph.nodes().filter(n => inDegree[n] > 0);
-  const unused = graph.nodes().filter(n => inDegree[n] === 0);
-  const usedRows = clusterLayout(used, 0);
-  clusterLayout(unused, usedRows + 1);
+  const referenced = graph.nodes().filter(n => inDegree[n] > 0);
+  const zeroIncoming = graph.nodes().filter(n => inDegree[n] === 0);
+  const referencedRows = clusterLayout(referenced, 0);
+  clusterLayout(zeroIncoming, referencedRows + 1);
 }
 
 function buildSimulation() {
@@ -409,17 +431,17 @@ function syncPositions(nodes) {
   });
 }
 
-function stopFA2() {
-  fa2Running = false;
-  if (fa2AnimFrame) { cancelAnimationFrame(fa2AnimFrame); fa2AnimFrame = null; }
+function stopForceLayout() {
+  forceRunning = false;
+  if (forceAnimFrame) { cancelAnimationFrame(forceAnimFrame); forceAnimFrame = null; }
   simulation = null; simNodes = null;
 }
 
-function runFA2Animated() {
-  fa2Running = true;
+function runForceAnimated() {
+  forceRunning = true;
   simNodes = buildSimulation();
   (function step() {
-    if (!fa2Running) return;
+    if (!forceRunning) return;
     const frameDeadline = performance.now() + 16;
     while (performance.now() < frameDeadline && simulation.alpha() > simulation.alphaMin()) {
       simulation.tick();
@@ -427,15 +449,15 @@ function runFA2Animated() {
     syncPositions(simNodes);
     renderer.refresh();
     if (simulation.alpha() > simulation.alphaMin()) {
-      fa2AnimFrame = requestAnimationFrame(step);
+      forceAnimFrame = requestAnimationFrame(step);
     } else {
-      fa2Running = false;
+      forceRunning = false;
     }
   })();
 }
 
 function applyLayout(name) {
-  stopFA2();
+  stopForceLayout();
   animateWrapper.style.display = 'none';
   separateWrapper.style.display = 'none';
   if (name === 'clusters') {
@@ -464,7 +486,7 @@ function applyLayout(name) {
   } else if (name === 'force') {
     animateWrapper.style.display = '';
     if (animateCheckbox.checked) {
-      runFA2Animated(); return;
+      runForceAnimated(); return;
     } else {
       simNodes = buildSimulation();
       const deadline = performance.now() + 5000;
@@ -488,9 +510,9 @@ document.getElementById('layout-select').addEventListener('change', function () 
 animateCheckbox.addEventListener('change', function () {
   if (document.getElementById('layout-select').value !== 'force') return;
   if (this.checked) {
-    runFA2Animated();
+    runForceAnimated();
   } else {
-    stopFA2();
+    stopForceLayout();
     renderer.refresh();
   }
 });

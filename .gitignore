@@ -1,2 +1,7 @@
 bin/
 obj/
+/output.json
+/output.html
+TestResults/
+.vs/
+*.user

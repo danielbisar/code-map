@@ -1,62 +1,16 @@
 [
   {
-    "from": "Combine2DAnd3D.Program",
-    "to": [
-      "Medja.Controls.Window",
-      "Medja.MedjaApplication",
-      "Medja.OpenTk.Components3D.GLCuboid",
-      "Medja.OpenTk.Components3D.GLOrthographicCamera",
-      "Medja.OpenTk.Components3D.GLScene",
-      "Medja.OpenTk.Controls.OpenGLEventControl",
-      "Medja.OpenTk.MedjaOpenTkLibrary",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlue",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Theming.ControlFactory",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "graph2d.Program",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.Window",
-      "Medja.MedjaApplication",
-      "Medja.OpenTk.MedjaOpenTkLibrary",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings"
-    ]
-  },
-  {
-    "from": "ManualProjectTo2D.Program",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.Window",
-      "Medja.Input.InputState",
-      "Medja.Input.KeyboardEventArgs",
-      "Medja.Input.Keys",
-      "Medja.MedjaApplication",
-      "Medja.OpenTk.Components3D.GLCuboid",
-      "Medja.OpenTk.Components3D.GLOrthographicCamera",
-      "Medja.OpenTk.Components3D.GLScene",
-      "Medja.OpenTk.Components3D.ModelMatrix",
-      "Medja.OpenTk.Components3D.ProjectionHelper",
-      "Medja.OpenTk.Controls.OpenGLEventControl",
-      "Medja.OpenTk.Controls.OpenGLEventControlRenderer",
-      "Medja.OpenTk.MedjaOpenTkLibrary",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings",
-      "Medja.Primitives.Colors",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
     "from": "Medja.ComboBoxEnumBinding",
     "to": [
+      "Medja.ComboBoxEnumBinding\u00601",
+      "Medja.Controls.ComboBox"
+    ]
+  },
+  {
+    "from": "Medja.ComboBoxEnumBinding\u00601",
+    "to": [
       "Medja.Controls.ComboBox",
-      "Medja.Controls.Menu.MenuItem",
-      "Medja.Properties.Binding.IBinding",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
-      "Medja.Utils.Collections.Generic.Map"
+      "Medja.Controls.Menu.MenuItem"
     ]
   },
   {
@@ -70,8 +24,6 @@
     "to": [
       "Medja.Controls.Container.ContentControl",
       "Medja.Controls.Image",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -79,16 +31,13 @@
     "from": "Medja.Controls.Buttons.RepeatButton",
     "to": [
       "Medja.Controls.Buttons.Button",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Utils.TaskQueueFinder"
     ]
   },
   {
     "from": "Medja.Controls.CheckBox",
     "to": [
-      "Medja.Controls.TextControl",
-      "Medja.Properties.Property"
+      "Medja.Controls.TextControl"
     ]
   },
   {
@@ -103,9 +52,6 @@
       "Medja.Controls.Window",
       "Medja.Input.InputState",
       "Medja.Primitives.Size",
-      "Medja.Properties.Binding.Binding",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -119,10 +65,8 @@
     "from": "Medja.Controls.Container.ContentArranger",
     "to": [
       "Medja.Controls.Control",
-      "Medja.Primitives.HorizontalAlignment",
       "Medja.Primitives.Rect",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.VerticalAlignment"
+      "Medja.Primitives.Size"
     ]
   },
   {
@@ -130,13 +74,9 @@
     "to": [
       "Medja.Controls.Container.ContentArranger",
       "Medja.Controls.Control",
-      "Medja.Primitives.HorizontalAlignment",
       "Medja.Primitives.Rect",
       "Medja.Primitives.Size",
-      "Medja.Primitives.Thickness",
-      "Medja.Primitives.VerticalAlignment",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Primitives.Thickness"
     ]
   },
   {
@@ -144,23 +84,17 @@
     "to": [
       "Medja.Controls.Container.ContentControl",
       "Medja.Controls.Control",
-      "Medja.Controls.Popup",
-      "Medja.Primitives.Visibility",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Controls.Popup"
     ]
   },
   {
     "from": "Medja.Controls.Container.ScrollableContainer",
     "to": [
-      "Medja.Controls.Container.ContentArranger",
       "Medja.Controls.Container.ContentControl",
       "Medja.Controls.Control",
       "Medja.Controls.MouseDraggedEventArgs",
       "Medja.Controls.VerticalScrollBar",
-      "Medja.Primitives.Rect",
       "Medja.Primitives.Size",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -171,20 +105,16 @@
       "Medja.Controls.Container.ContentControl",
       "Medja.Controls.Control",
       "Medja.Primitives.Size",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlFactory"
     ]
   },
   {
     "from": "Medja.Controls.Container.TabControl",
     "to": [
-      "Medja.Controls.Container.ContentArranger",
       "Medja.Controls.Container.ContentControl",
       "Medja.Controls.Container.TabHeaderPosition",
       "Medja.Controls.Container.TabItem",
       "Medja.Controls.Control",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
       "Medja.Controls.Panels.Panel",
       "Medja.Controls.Panels.UniformWidthPanel",
@@ -193,8 +123,6 @@
       "Medja.Primitives.Rect",
       "Medja.Primitives.Size",
       "Medja.Primitives.Thickness",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -205,15 +133,13 @@
   {
     "from": "Medja.Controls.Container.TabItem",
     "to": [
-      "Medja.Controls.Control",
-      "Medja.Properties.Property"
+      "Medja.Controls.Control"
     ]
   },
   {
     "from": "Medja.Controls.Container.TransformContainer",
     "to": [
-      "Medja.Controls.Container.ContentControl",
-      "Medja.Properties.Property"
+      "Medja.Controls.Container.ContentControl"
     ]
   },
   {
@@ -227,11 +153,6 @@
       "Medja.Primitives.Thickness",
       "Medja.Primitives.VerticalAlignment",
       "Medja.Primitives.Visibility",
-      "Medja.Properties.AttachedProperties",
-      "Medja.Properties.IProperty",
-      "Medja.Properties.OverwritableProperty",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlRenderer"
     ]
   },
@@ -260,13 +181,8 @@
     "to": [
       "Medja.Controls.Control",
       "Medja.Controls.Dialogs.Dialog",
-      "Medja.Controls.Dialogs.DialogButtons",
       "Medja.Controls.Dialogs.DialogButtonsControl",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Primitives.VerticalAlignment",
-      "Medja.Properties.Property",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -274,8 +190,7 @@
     "from": "Medja.Controls.Dialogs.Dialog",
     "to": [
       "Medja.Controls.Container.ContentControl",
-      "Medja.Controls.Dialogs.DialogParentControl",
-      "Medja.Controls.Dialogs.DialogService"
+      "Medja.Controls.Dialogs.DialogParentControl"
     ]
   },
   {
@@ -288,9 +203,7 @@
       "Medja.Controls.Buttons.Button",
       "Medja.Controls.Container.ContentControl",
       "Medja.Controls.Dialogs.DialogButtons",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
-      "Medja.Globalization",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -301,9 +214,7 @@
       "Medja.Controls.Control",
       "Medja.Controls.Dialogs.Dialog",
       "Medja.Primitives.Size",
-      "Medja.Primitives.Thickness",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Primitives.Thickness"
     ]
   },
   {
@@ -312,8 +223,6 @@
       "Medja.Controls.Control",
       "Medja.Controls.Dialogs.Dialog",
       "Medja.Controls.Dialogs.DialogParentControl",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Primitives.VerticalAlignment",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -322,15 +231,11 @@
     "to": [
       "Medja.Controls.Control",
       "Medja.Controls.Dialogs.ConfirmableDialog",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
       "Medja.Controls.Panels.VerticalStackPanel",
       "Medja.Controls.TextBlock",
       "Medja.Controls.TextBox",
-      "Medja.Primitives.TextWrapping",
       "Medja.Primitives.Thickness",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -340,7 +245,6 @@
       "Medja.Controls.Control",
       "Medja.Controls.Dialogs.ConfirmableDialog",
       "Medja.Controls.NumericKeypad",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
       "Medja.Primitives.Size",
       "Medja.Theming.ControlFactory"
@@ -351,12 +255,8 @@
     "to": [
       "Medja.Controls.Control",
       "Medja.Controls.Dialogs.ConfirmableDialog",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
       "Medja.Controls.TextBlock",
-      "Medja.Primitives.TextWrapping",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -365,17 +265,9 @@
     "to": [
       "Medja.Controls.Control",
       "Medja.Controls.Dialogs.Dialog",
-      "Medja.Controls.Dialogs.DialogButtons",
       "Medja.Controls.Dialogs.DialogButtonsControl",
-      "Medja.Controls.Dialogs.DialogService",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
       "Medja.Controls.TextBlock",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Primitives.TextWrapping",
-      "Medja.Primitives.VerticalAlignment",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -411,9 +303,7 @@
     "to": [
       "Medja.Controls.Container.ContentControl",
       "Medja.Controls.Control",
-      "Medja.Controls.Graph2D.AxisOrientation",
       "Medja.Controls.Graph2D.Graph2DAxis",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
       "Medja.Theming.IControlFactory"
     ]
@@ -423,8 +313,7 @@
     "to": [
       "Medja.Controls.Control",
       "Medja.Controls.Graph2D.AxisOrientation",
-      "Medja.Primitives.Font",
-      "Medja.Properties.Property"
+      "Medja.Primitives.Font"
     ]
   },
   {
@@ -441,14 +330,18 @@
     ]
   },
   {
+    "from": "Medja.Controls.INavigationView",
+    "to": []
+  },
+  {
+    "from": "Medja.Controls.ISelectable",
+    "to": []
+  },
+  {
     "from": "Medja.Controls.Image",
     "to": [
       "Medja.Controls.Control",
-      "Medja.Controls.Images.Bitmap",
-      "Medja.Controls.Images.BitmapFactory",
-      "Medja.MedjaApplication",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Controls.Images.Bitmap"
     ]
   },
   {
@@ -468,39 +361,24 @@
     "to": []
   },
   {
-    "from": "Medja.Controls.INavigationView",
-    "to": []
-  },
-  {
-    "from": "Medja.Controls.ISelectable",
-    "to": []
-  },
-  {
-    "from": "Medja.Controls.ItemEventArgs",
+    "from": "Medja.Controls.ItemEventArgs\u00601",
     "to": [
       "Medja.Controls.Control"
     ]
   },
   {
-    "from": "Medja.Controls.ItemsManager",
+    "from": "Medja.Controls.ItemsManager\u00601",
     "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.ItemEventArgs",
+      "Medja.Controls.ItemEventArgs\u00601",
       "Medja.Controls.Menu.MenuItem",
       "Medja.Input.InputState",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
-      "Medja.Theming.IControlFactory",
-      "Medja.Utils.Collections.Generic.ReferenceEqualityComparer",
-      "Medja.Utils.EqualityUtils"
+      "Medja.Theming.IControlFactory"
     ]
   },
   {
     "from": "Medja.Controls.Menu.MenuItem",
     "to": [
-      "Medja.Controls.Control",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Controls.Control"
     ]
   },
   {
@@ -518,31 +396,24 @@
       "Medja.Controls.Control",
       "Medja.Controls.NumericKeypadTextFactory",
       "Medja.Controls.Panels.ColumnDefinition",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
       "Medja.Controls.Panels.RowDefinition",
       "Medja.Controls.Panels.TablePanel",
       "Medja.Controls.TextBox",
-      "Medja.Globalization",
       "Medja.Input.InputState",
       "Medja.Theming.ControlFactory"
     ]
   },
   {
     "from": "Medja.Controls.NumericKeypadTextFactory",
-    "to": [
-      "Medja.Globalization",
-      "Medja.Utils.Text.TextReaderNavigator"
-    ]
+    "to": []
   },
   {
     "from": "Medja.Controls.Panels.Canvas",
     "to": [
       "Medja.Controls.Control",
       "Medja.Controls.Panels.Panel",
-      "Medja.Primitives.Size",
-      "Medja.Properties.AttachedProperties",
-      "Medja.Properties.AttachedPropertyIdFactory"
+      "Medja.Primitives.Size"
     ]
   },
   {
@@ -567,11 +438,7 @@
       "Medja.Controls.Control",
       "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.Panel",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.VerticalAlignment",
-      "Medja.Primitives.Visibility",
-      "Medja.Utils.Collections.Generic.ReferenceEqualityComparer"
+      "Medja.Primitives.Size"
     ]
   },
   {
@@ -579,28 +446,21 @@
     "to": [
       "Medja.Controls.Control",
       "Medja.Controls.Panels.Panel",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.VerticalAlignment",
-      "Medja.Primitives.Visibility",
-      "Medja.Properties.Property"
+      "Medja.Primitives.Size"
     ]
   },
   {
     "from": "Medja.Controls.Panels.LayerPanel",
     "to": [
       "Medja.Controls.Panels.Panel",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.VerticalAlignment"
+      "Medja.Primitives.Size"
     ]
   },
   {
     "from": "Medja.Controls.Panels.Panel",
     "to": [
       "Medja.Controls.Control",
-      "Medja.Primitives.Thickness",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Primitives.Thickness"
     ]
   },
   {
@@ -618,9 +478,7 @@
     "from": "Medja.Controls.Panels.ScrollingGrid",
     "to": [
       "Medja.Controls.Panels.Panel",
-      "Medja.Primitives.Rect",
-      "Medja.Primitives.Size",
-      "Medja.Properties.Property"
+      "Medja.Primitives.Size"
     ]
   },
   {
@@ -630,30 +488,22 @@
       "Medja.Controls.Panels.ColumnDefinition",
       "Medja.Controls.Panels.Panel",
       "Medja.Controls.Panels.RowDefinition",
-      "Medja.Primitives.HorizontalAlignment",
       "Medja.Primitives.Rect",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.VerticalAlignment"
+      "Medja.Primitives.Size"
     ]
   },
   {
     "from": "Medja.Controls.Panels.UniformWidthPanel",
     "to": [
       "Medja.Controls.Panels.Panel",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.VerticalAlignment",
-      "Medja.Primitives.Visibility",
-      "Medja.Properties.Property"
+      "Medja.Primitives.Size"
     ]
   },
   {
     "from": "Medja.Controls.Panels.VerticalStackPanel",
     "to": [
       "Medja.Controls.Panels.Panel",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.Visibility",
-      "Medja.Properties.Property"
+      "Medja.Primitives.Size"
     ]
   },
   {
@@ -666,9 +516,7 @@
     "from": "Medja.Controls.ProgressBar",
     "to": [
       "Medja.Controls.Control",
-      "Medja.Primitives.Color",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Primitives.Color"
     ]
   },
   {
@@ -678,9 +526,7 @@
       "Medja.Controls.MouseDraggedEventArgs",
       "Medja.Primitives.Color",
       "Medja.Primitives.Orientation",
-      "Medja.Primitives.Point",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Primitives.Point"
     ]
   },
   {
@@ -693,12 +539,7 @@
     "from": "Medja.Controls.TextBox",
     "to": [
       "Medja.Controls.TextControl",
-      "Medja.Input.InputState",
       "Medja.Input.KeyboardEventArgs",
-      "Medja.Input.Keys",
-      "Medja.Primitives.TextWrapping",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Utils.TaskQueueFinder"
     ]
   },
@@ -712,8 +553,6 @@
       "Medja.Primitives.TextAlignment",
       "Medja.Primitives.TextWrapping",
       "Medja.Primitives.Thickness",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Utils.TextWrapper"
     ]
   },
@@ -726,28 +565,21 @@
     "to": [
       "Medja.Controls.Control",
       "Medja.Controls.TextEditor.Caret",
-      "Medja.Input.InputState",
       "Medja.Input.KeyboardEventArgs",
-      "Medja.Input.Keys",
-      "Medja.Input.ModifierKeys",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Utils.TaskQueueFinder"
     ]
   },
   {
-    "from": "Medja.Controls.TouchItemList",
+    "from": "Medja.Controls.TouchItemList\u00601",
     "to": [
       "Medja.Controls.Buttons.Button",
       "Medja.Controls.Container.ContentControl",
-      "Medja.Controls.ItemEventArgs",
-      "Medja.Controls.ItemsManager",
+      "Medja.Controls.ItemEventArgs\u00601",
+      "Medja.Controls.ItemsManager\u00601",
       "Medja.Controls.Menu.MenuItem",
-      "Medja.Controls.Panels.Dock",
       "Medja.Controls.Panels.DockPanel",
       "Medja.Controls.Panels.VerticalStackPanel",
-      "Medja.PagedListView",
-      "Medja.Properties.Property",
+      "Medja.PagedListView\u00601",
       "Medja.Theming.IControlFactory"
     ]
   },
@@ -755,161 +587,31 @@
     "from": "Medja.Controls.VerticalScrollBar",
     "to": [
       "Medja.Controls.MouseDraggedEventArgs",
-      "Medja.Controls.ProgressBar",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Controls.ProgressBar"
     ]
   },
   {
-    "from": "Medja.Controls.ViewNavigator",
+    "from": "Medja.Controls.ViewNavigator\u00601",
     "to": [
       "Medja.Controls.Container.ContentControl",
       "Medja.Controls.Control",
-      "Medja.Controls.INavigationView",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Controls.INavigationView"
     ]
   },
   {
     "from": "Medja.Controls.Window",
     "to": [
-      "Medja.Controls.Container.ContentArranger",
       "Medja.Controls.Container.ContentControl",
       "Medja.Controls.FocusManager",
       "Medja.Controls.WindowState",
       "Medja.Primitives.Rect",
       "Medja.Primitives.Size",
-      "Medja.Properties.Property",
-      "Medja.Theming.ControlFactory",
-      "Medja.Theming.IControlFactory",
-      "Medja.Utils.Threading.Tasks.TaskQueue"
+      "Medja.Theming.IControlFactory"
     ]
   },
   {
     "from": "Medja.Controls.WindowState",
     "to": []
-  },
-  {
-    "from": "Medja.Demo.CustomControlsFactory",
-    "to": [
-      "Medja.Demo.OpenGlTestControl",
-      "Medja.Demo.OpenGlTestControlRenderer",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlue"
-    ]
-  },
-  {
-    "from": "Medja.Demo.OpenGlTestControl",
-    "to": [
-      "Medja.Controls.Control3D",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.Demo.OpenGlTestControlRenderer",
-    "to": [
-      "Medja.Demo.OpenGlTestControl",
-      "Medja.OpenTk.Components3D.GLCuboid",
-      "Medja.OpenTk.Components3D.GLPerspectiveCamera",
-      "Medja.OpenTk.Components3D.GLScene",
-      "Medja.OpenTk.Components3D.ModelMatrix",
-      "Medja.OpenTk.Rendering.OpenTKControlRendererBase",
-      "Medja.Primitives.Color",
-      "Medja.Utils.MedjaMath"
-    ]
-  },
-  {
-    "from": "Medja.Demo.Program",
-    "to": [
-      "Medja.Controls.Buttons.Button",
-      "Medja.Controls.Buttons.RepeatButton",
-      "Medja.Controls.CheckBox",
-      "Medja.Controls.ComboBox",
-      "Medja.Controls.Container.PopupContainer",
-      "Medja.Controls.Container.TabControl",
-      "Medja.Controls.Container.TabHeaderPosition",
-      "Medja.Controls.Container.TabItem",
-      "Medja.Controls.Control",
-      "Medja.Controls.Dialogs.DialogService",
-      "Medja.Controls.Dialogs.InputBoxDialog",
-      "Medja.Controls.Dialogs.QuestionDialog",
-      "Medja.Controls.Dialogs.SimpleMessageDialog",
-      "Medja.Controls.FocusManager",
-      "Medja.Controls.Menu.MenuItem",
-      "Medja.Controls.Panels.Canvas",
-      "Medja.Controls.Panels.Dock",
-      "Medja.Controls.Panels.DockPanel",
-      "Medja.Controls.Panels.HorizontalStackPanel",
-      "Medja.Controls.Panels.VerticalStackPanel",
-      "Medja.Controls.Popup",
-      "Medja.Controls.ProgressBar",
-      "Medja.Controls.Slider",
-      "Medja.Controls.TextBlock",
-      "Medja.Controls.TextBox",
-      "Medja.Controls.TextEditor.TextEditor",
-      "Medja.Controls.TouchItemList",
-      "Medja.Controls.Window",
-      "Medja.Demo.CustomControlsFactory",
-      "Medja.Demo.OpenGlTestControl",
-      "Medja.Demo.ScrollingTab",
-      "Medja.Demo.SizeToContentTab",
-      "Medja.Demo.TransformationsTab",
-      "Medja.MedjaApplication",
-      "Medja.OpenTk.MedjaOpenTkLibrary",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.Primitives.Colors",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Primitives.Orientation",
-      "Medja.Primitives.TextWrapping",
-      "Medja.Primitives.VerticalAlignment",
-      "Medja.Theming.ControlFactory",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Demo.ScrollingTab",
-    "to": [
-      "Medja.Controls.Container.ContentControl",
-      "Medja.Controls.Container.ScrollableContainer",
-      "Medja.Controls.TextBlock",
-      "Medja.MedjaApplication",
-      "Medja.Properties.PropertyChangedEventArgs",
-      "Medja.Theming.IControlFactory",
-      "Medja.Utils.Threading.Tasks.TaskQueue"
-    ]
-  },
-  {
-    "from": "Medja.Demo.SizeToContentTab",
-    "to": [
-      "Medja.Controls.Container.ContentControl",
-      "Medja.Controls.Panels.VerticalStackPanel",
-      "Medja.Controls.TextBlock",
-      "Medja.Controls.TextEditor.TextEditor",
-      "Medja.Primitives.TextWrapping",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Demo.TransformationsTab",
-    "to": [
-      "Medja.Controls.Container.ContentControl",
-      "Medja.Controls.Container.TransformContainer",
-      "Medja.Controls.Control",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.examples.Editor.Program",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.FocusManager",
-      "Medja.Controls.Window",
-      "Medja.MedjaApplication",
-      "Medja.OpenTk.MedjaOpenTkLibrary",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlue",
-      "Medja.Primitives.Colors"
-    ]
   },
   {
     "from": "Medja.Globalization",
@@ -928,9 +630,7 @@
       "Medja.Controls.Control",
       "Medja.Controls.MouseDraggedEventArgs",
       "Medja.Input.KeyboardEventArgs",
-      "Medja.Primitives.Point",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Primitives.Point"
     ]
   },
   {
@@ -958,20 +658,13 @@
     "from": "Medja.LayoutExtensions",
     "to": [
       "Medja.Controls.Control",
-      "Medja.MarkLayoutDirtyOnPropertyChanged",
-      "Medja.Properties.AttachedProperties",
-      "Medja.Properties.AttachedPropertyIdFactory",
-      "Medja.Properties.IProperty",
-      "Medja.Properties.Property"
+      "Medja.MarkLayoutDirtyOnPropertyChanged"
     ]
   },
   {
     "from": "Medja.MarkLayoutDirtyOnPropertyChanged",
     "to": [
-      "Medja.Controls.Control",
-      "Medja.Properties.Binding.IBinding",
-      "Medja.Properties.IProperty",
-      "Medja.Properties.PropertyChangedEventArgs"
+      "Medja.Controls.Control"
     ]
   },
   {
@@ -979,878 +672,11 @@
     "to": [
       "Medja.Controls.Window",
       "Medja.IMedjaLibrary",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.ShutdownEventArgs"
     ]
   },
   {
-    "from": "Medja.OpenTk.Components3D.CharTextureCoordinate",
-    "to": [
-      "Medja.OpenTk.Components3D.TextureCoordinate"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.CharTextureCoordinates",
-    "to": [
-      "Medja.OpenTk.Components3D.CharTextureCoordinate"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLCamera",
-    "to": [
-      "Medja.OpenTk.Components3D.GLComponent",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLColoredModel",
-    "to": [
-      "Medja.OpenTk.Components3D.GLUniform",
-      "Medja.OpenTk.Components3D.GLVertexArrayModel",
-      "Medja.OpenTk.Components3D.ModelMatrix",
-      "Medja.OpenTk.Components3D.OpenGLProgram",
-      "Medja.OpenTk.Components3D.ShaderFactory",
-      "Medja.OpenTk.Components3D.Vertices.IVertexArrayObjectFactory",
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-      "Medja.OpenTk.Components3D.Vertices.VertexShaderGenConfig",
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Colors",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLComponent",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLCuboid",
-    "to": [
-      "Medja.OpenTk.Components3D.GLColoredModel",
-      "Medja.OpenTk.Components3D.Vertices.CubeFactory",
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLFontTexture",
-    "to": [
-      "Medja.OpenTk.Components3D.CharTextureCoordinate",
-      "Medja.OpenTk.Components3D.CharTextureCoordinates",
-      "Medja.OpenTk.Components3D.GLTexture",
-      "Medja.OpenTk.Components3D.TextureCoordinate",
-      "Medja.Primitives.Font",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.SizeInt",
-      "Medja.Utils.MedjaMath"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLLabel",
-    "to": [
-      "Medja.OpenTk.Components3D.GLFontTexture",
-      "Medja.OpenTk.Components3D.GLLabelVertexFactory",
-      "Medja.OpenTk.Components3D.GLModel",
-      "Medja.OpenTk.Components3D.GLUniform",
-      "Medja.OpenTk.Components3D.ModelMatrix",
-      "Medja.OpenTk.Components3D.OpenGLProgram",
-      "Medja.OpenTk.Components3D.ShaderFactory",
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-      "Medja.OpenTk.Components3D.Vertices.VertexAttributeType",
-      "Medja.OpenTk.Components3D.Vertices.VertexBufferObject",
-      "Medja.OpenTk.Components3D.Vertices.VertexShaderGenConfig",
-      "Medja.Primitives.Colors",
-      "Medja.Primitives.Font",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLLabelVertexFactory",
-    "to": [
-      "Medja.OpenTk.Components3D.GLFontTexture"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLMesh",
-    "to": [
-      "Medja.OpenTk.Components3D.GLModel",
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLModel",
-    "to": [
-      "Medja.OpenTk.Components3D.GLComponent",
-      "Medja.OpenTk.Components3D.IViewProjectionMatrix",
-      "Medja.OpenTk.Components3D.ModelMatrix",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLOrthographicCamera",
-    "to": [
-      "Medja.OpenTk.Components3D.GLCamera",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLPerspectiveCamera",
-    "to": [
-      "Medja.OpenTk.Components3D.GLCamera",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLRenderWrapper",
-    "to": [
-      "Medja.OpenTk.Components3D.GLComponent",
-      "Medja.OpenTk.Components3D.GLModel",
-      "Medja.OpenTk.Components3D.GLScene",
-      "Medja.OpenTk.Components3D.IViewProjectionMatrix"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLScene",
-    "to": [
-      "Medja.OpenTk.Components3D.GLCamera",
-      "Medja.OpenTk.Components3D.GLComponent",
-      "Medja.OpenTk.Components3D.GLModel",
-      "Medja.OpenTk.Components3D.IViewProjectionMatrix"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLSphere",
-    "to": [
-      "Medja.OpenTk.Components3D.GLMesh",
-      "Medja.OpenTk.Components3D.GLModel"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLTexture",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLTriangle",
-    "to": [
-      "Medja.OpenTk.Components3D.GLColoredModel",
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObjectFactory"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLUniform",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.GLVertexArrayModel",
-    "to": [
-      "Medja.OpenTk.Components3D.GLModel",
-      "Medja.OpenTk.Components3D.OpenGLProgram",
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.IViewProjectionMatrix",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.ModelMatrix",
-    "to": [
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.OpenGLProgram",
-    "to": [
-      "Medja.OpenTk.Components3D.GLUniform",
-      "Medja.OpenTk.Components3D.OpenGLShader"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.OpenGLShader",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.ProjectionHelper",
-    "to": [
-      "Medja.OpenTk.Components3D.ModelMatrix",
-      "Medja.Primitives.MRect",
-      "Medja.Primitives.Point"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.ShaderFactory",
-    "to": [
-      "Medja.OpenTk.Components3D.OpenGLShader",
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-      "Medja.OpenTk.Components3D.Vertices.VertexAttributeType",
-      "Medja.OpenTk.Components3D.Vertices.VertexShaderGenConfig"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.TextureCoordinate",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.Vertices.CubeFactory",
-    "to": [
-      "Medja.OpenTk.Components3D.Vertices.IVertexArrayObjectFactory",
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-      "Medja.OpenTk.Components3D.Vertices.VertexAttributeType",
-      "Medja.OpenTk.Components3D.Vertices.VertexBufferObject"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.Vertices.ElementBufferObject",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.Vertices.IVertexArrayObjectFactory",
-    "to": [
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-    "to": [
-      "Medja.OpenTk.Components3D.Vertices.ElementBufferObject",
-      "Medja.OpenTk.Components3D.Vertices.VertexAttribute",
-      "Medja.OpenTk.Components3D.Vertices.VertexAttributeType",
-      "Medja.OpenTk.Components3D.Vertices.VertexBufferObject"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.Vertices.VertexArrayObjectFactory",
-    "to": [
-      "Medja.OpenTk.Components3D.Vertices.IVertexArrayObjectFactory",
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-      "Medja.OpenTk.Components3D.Vertices.VertexAttributeType",
-      "Medja.OpenTk.Components3D.Vertices.VertexBufferObject"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.Vertices.VertexAttribute",
-    "to": [
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-      "Medja.OpenTk.Components3D.Vertices.VertexAttributeType",
-      "Medja.OpenTk.Components3D.Vertices.VertexBufferObject"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.Vertices.VertexAttributeType",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.Vertices.VertexBufferObject",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Components3D.Vertices.VertexShaderGenConfig",
-    "to": [
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-      "Medja.Primitives.Color"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Controls.OpenGLEventControl",
-    "to": [
-      "Medja.Controls.Control3D"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Controls.OpenGLEventControlRenderer",
-    "to": [
-      "Medja.OpenTk.Controls.OpenGLEventControl",
-      "Medja.OpenTk.Rendering.OpenTKControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Input.KeyMap",
-    "to": [
-      "Medja.Input.Keys",
-      "Medja.Input.ModifierKeys"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Input.MouseState",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Input.OpenTkKeyboardHandler",
-    "to": [
-      "Medja.Controls.FocusManager",
-      "Medja.Input.InputState",
-      "Medja.Input.KeyboardEventArgs",
-      "Medja.Input.ModifierKeys",
-      "Medja.OpenTk.Input.KeyMap"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Input.OpenTkMouseHandler",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.FocusManager",
-      "Medja.Controls.Window",
-      "Medja.OpenTk.Input.MouseState"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.MedjaOpenTkLibrary",
-    "to": [
-      "Medja.Controls.Images.BitmapFactory",
-      "Medja.IMedjaLibrary",
-      "Medja.MedjaApplication",
-      "Medja.OpenTk.SkiaBitmapFactory",
-      "Medja.OpenTk.Window.OpenTkWindow"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.MedjaOpenTKWindowSettings",
-    "to": [
-      "Medja.OpenTk.OpenGLVersion",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.OpenGLVersion",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Rendering.GlContext",
-    "to": [
-      "Medja.OpenTk.Rendering.GlContextActions"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Rendering.GlContextActions",
-    "to": [
-      "Medja.Primitives.RectInt"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Rendering.GlContextManager",
-    "to": [
-      "Medja.OpenTk.Rendering.GlContext"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Rendering.IOpenTkControlRenderer",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Rendering.OpenTKControlRendererBase",
-    "to": [
-      "Medja.Controls.Control3D",
-      "Medja.OpenTk.Rendering.IOpenTkControlRenderer",
-      "Medja.OpenTk.Window.OpenTkWindow",
-      "Medja.Primitives.MRect",
-      "Medja.Theming.ControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Rendering.OpenTkRenderer",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.ControlLists",
-      "Medja.OpenTk.Rendering.IOpenTkControlRenderer",
-      "Medja.OpenTk.Rendering.SkiaGlLayer"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Rendering.SkiaExtensions",
-    "to": [
-      "Medja.Controls.Images.PixelFormat",
-      "Medja.Primitives.Color",
-      "Medja.Primitives.MRect"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Rendering.SkiaGlLayer",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.SkiaBitmapFactory",
-    "to": [
-      "Medja.Controls.Images.Bitmap",
-      "Medja.Controls.Images.BitmapFactory",
-      "Medja.Controls.Images.PixelFormat"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Test.Components3D.GLCameraTest",
-    "to": [
-      "Medja.OpenTk.Components3D.GLCamera"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Test.Components3D.GLPerspectiveCameraTest",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Test.Components3D.ShaderFactoryTest",
-    "to": [
-      "Medja.OpenTk.Components3D.ShaderFactory",
-      "Medja.OpenTk.Components3D.Vertices.VertexArrayObject",
-      "Medja.OpenTk.Components3D.Vertices.VertexShaderGenConfig"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Test.Input.KeyMapTest",
-    "to": [
-      "Medja.Input.Keys",
-      "Medja.OpenTk.Input.KeyMap"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Test.SkiaBitmapFactoryTest",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Test.Utils.SkiaExtensionsTest",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Themes.BlackRed.ButtonRenderer",
-    "to": [
-      "Medja.Controls.Buttons.Button",
-      "Medja.OpenTk.Themes.TextControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.BlackRed.CheckBoxRenderer",
-    "to": [
-      "Medja.Controls.CheckBox",
-      "Medja.OpenTk.Themes.TextControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.BlackRed.ComboBoxRenderer",
-    "to": [
-      "Medja.Controls.ComboBox",
-      "Medja.OpenTk.Themes.BlackRed.ThemeBlackRedValues",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.BlackRed.TabControlRenderer",
-    "to": [
-      "Medja.Controls.Container.TabControl",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.BlackRed.TextBlockRenderer",
-    "to": [
-      "Medja.Controls.TextBlock",
-      "Medja.OpenTk.Themes.TextControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.BlackRed.TextBoxRenderer",
-    "to": [
-      "Medja.Controls.TextBox",
-      "Medja.OpenTk.Themes.BlackRed.ThemeBlackRedValues",
-      "Medja.OpenTk.Themes.TextControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.BlackRed.ThemeBlackRed",
-    "to": [
-      "Medja.Controls.Buttons.Button",
-      "Medja.Controls.Buttons.RepeatButton",
-      "Medja.Controls.CheckBox",
-      "Medja.Controls.ComboBox",
-      "Medja.Controls.ComboBoxMenuItem",
-      "Medja.Controls.Container.ContentControl",
-      "Medja.Controls.Container.ScrollableContainer",
-      "Medja.Controls.Container.TabControl",
-      "Medja.Controls.Container.TabItem",
-      "Medja.Controls.Control",
-      "Medja.Controls.Dialogs.Dialog",
-      "Medja.Controls.Dialogs.DialogButtonsControl",
-      "Medja.Controls.Dialogs.InputBoxDialog",
-      "Medja.Controls.Dialogs.NumericKeypadDialog",
-      "Medja.Controls.Dialogs.QuestionDialog",
-      "Medja.Controls.Dialogs.SimpleMessageDialog",
-      "Medja.Controls.Graph2D.Graph2D",
-      "Medja.Controls.Graph2D.Graph2DAxis",
-      "Medja.Controls.Image",
-      "Medja.Controls.Menu.MenuItem",
-      "Medja.Controls.NumericKeypad",
-      "Medja.Controls.Panels.ScrollingGrid",
-      "Medja.Controls.Popup",
-      "Medja.Controls.ProgressBar",
-      "Medja.Controls.Slider",
-      "Medja.Controls.TextBlock",
-      "Medja.Controls.TextBox",
-      "Medja.Controls.VerticalScrollBar",
-      "Medja.Controls.Window",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings",
-      "Medja.OpenTk.Themes.BlackRed.ButtonRenderer",
-      "Medja.OpenTk.Themes.BlackRed.CheckBoxRenderer",
-      "Medja.OpenTk.Themes.BlackRed.ComboBoxRenderer",
-      "Medja.OpenTk.Themes.BlackRed.TabControlRenderer",
-      "Medja.OpenTk.Themes.BlackRed.TextBlockRenderer",
-      "Medja.OpenTk.Themes.BlackRed.TextBoxRenderer",
-      "Medja.OpenTk.Themes.BlackRed.ThemeBlackRedValues",
-      "Medja.OpenTk.Themes.BlackRed.VerticalScrollBarRenderer",
-      "Medja.OpenTk.Themes.ControlRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.ButtonRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.CheckBoxRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.ComboBoxRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.PopupRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.TabControlRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.TextBlockRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.TextBoxRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.OpenTk.Themes.DarkBlue.VerticalScrollBarRenderer",
-      "Medja.OpenTk.Themes.Graph2DAxisRenderer",
-      "Medja.OpenTk.Themes.ImageRenderer",
-      "Medja.OpenTk.Themes.MenuItemRenderer",
-      "Medja.OpenTk.Themes.ProgressBarRenderer",
-      "Medja.OpenTk.Themes.SliderRenderer",
-      "Medja.OpenTk.Themes.TabItemRenderer",
-      "Medja.OpenTk.Themes.ThemeOpenTKBase",
-      "Medja.OpenTk.Window.OpenTkWindow",
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Font",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.TextAlignment"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.BlackRed.ThemeBlackRedValues",
-    "to": [
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Colors"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.BlackRed.VerticalScrollBarRenderer",
-    "to": [
-      "Medja.Controls.VerticalScrollBar",
-      "Medja.OpenTk.Themes.BlackRed.ThemeBlackRedValues",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.ControlRenderer",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.ButtonBackgroundRenderer",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.ButtonRenderer",
-    "to": [
-      "Medja.Controls.Buttons.Button",
-      "Medja.OpenTk.Themes.DarkBlue.ButtonBackgroundRenderer",
-      "Medja.OpenTk.Themes.TextControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.CheckBoxRenderer",
-    "to": [
-      "Medja.Controls.CheckBox",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.OpenTk.Themes.TextControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.ComboBoxRenderer",
-    "to": [
-      "Medja.Controls.ComboBox",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.PopupRenderer",
-    "to": [
-      "Medja.Controls.Popup",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.TabControlRenderer",
-    "to": [
-      "Medja.Controls.Container.TabControl",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.TextBlockRenderer",
-    "to": [
-      "Medja.Controls.TextBlock",
-      "Medja.OpenTk.Themes.TextControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.TextBoxRenderer",
-    "to": [
-      "Medja.Controls.TextBox",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.OpenTk.Themes.TextControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.TextEditorRenderer",
-    "to": [
-      "Medja.Controls.TextEditor.TextEditor",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlue",
-    "to": [
-      "Medja.Controls.Buttons.Button",
-      "Medja.Controls.Buttons.RepeatButton",
-      "Medja.Controls.CheckBox",
-      "Medja.Controls.ComboBox",
-      "Medja.Controls.ComboBoxMenuItem",
-      "Medja.Controls.Container.ContentControl",
-      "Medja.Controls.Container.TabControl",
-      "Medja.Controls.Container.TabItem",
-      "Medja.Controls.Control",
-      "Medja.Controls.Dialogs.DialogButtonsControl",
-      "Medja.Controls.Dialogs.InputBoxDialog",
-      "Medja.Controls.Dialogs.NumericKeypadDialog",
-      "Medja.Controls.Dialogs.QuestionDialog",
-      "Medja.Controls.Dialogs.SimpleMessageDialog",
-      "Medja.Controls.Image",
-      "Medja.Controls.Menu.MenuItem",
-      "Medja.Controls.Panels.Canvas",
-      "Medja.Controls.Panels.DockPanel",
-      "Medja.Controls.Panels.HorizontalStackPanel",
-      "Medja.Controls.Panels.ScrollingGrid",
-      "Medja.Controls.Panels.TablePanel",
-      "Medja.Controls.Panels.VerticalStackPanel",
-      "Medja.Controls.Popup",
-      "Medja.Controls.ProgressBar",
-      "Medja.Controls.Slider",
-      "Medja.Controls.TextBlock",
-      "Medja.Controls.TextBox",
-      "Medja.Controls.TextEditor.TextEditor",
-      "Medja.Controls.VerticalScrollBar",
-      "Medja.Controls.Window",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings",
-      "Medja.OpenTk.Themes.ControlRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.ButtonRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.CheckBoxRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.ComboBoxRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.PopupRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.TabControlRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.TextBlockRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.TextBoxRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.TextEditorRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.OpenTk.Themes.DarkBlue.VerticalScrollBarRenderer",
-      "Medja.OpenTk.Themes.ImageRenderer",
-      "Medja.OpenTk.Themes.MenuItemRenderer",
-      "Medja.OpenTk.Themes.ProgressBarRenderer",
-      "Medja.OpenTk.Themes.SliderRenderer",
-      "Medja.OpenTk.Themes.TabItemRenderer",
-      "Medja.OpenTk.Themes.ThemeOpenTKBase",
-      "Medja.OpenTk.Themes.WindowRenderer",
-      "Medja.OpenTk.Window.OpenTkWindow",
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Colors",
-      "Medja.Primitives.Font",
-      "Medja.Primitives.TextAlignment"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-    "to": [
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Colors"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.DarkBlue.VerticalScrollBarRenderer",
-    "to": [
-      "Medja.Controls.VerticalScrollBar",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlueValues",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.FramesPerSecondCounterRenderer",
-    "to": [
-      "Medja.Primitives.MRect",
-      "Medja.Theming.IControlRenderer",
-      "Medja.Utils.FramesPerSecondCounter",
-      "Medja.Utils.ValueEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.Graph2DAxisRenderer",
-    "to": [
-      "Medja.Controls.Graph2D.AxisOrientation",
-      "Medja.Controls.Graph2D.Graph2DAxis",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.ImageRenderer",
-    "to": [
-      "Medja.Controls.Image",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.MenuItemRenderer",
-    "to": [
-      "Medja.Controls.Menu.MenuItem",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase",
-      "Medja.Primitives.Color"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.ProgressBarRenderer",
-    "to": [
-      "Medja.Controls.ProgressBar",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.SkiaControlRendererBase",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Theming.ControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.SliderRenderer",
-    "to": [
-      "Medja.Controls.Slider",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase",
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Orientation",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.TabItemRenderer",
-    "to": [
-      "Medja.Controls.Container.TabItem",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase",
-      "Medja.Primitives.Color"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.Test.ThemeOpenTKBaseTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.Panels.Panel",
-      "Medja.OpenTk.Controls.OpenGLEventControl",
-      "Medja.OpenTk.Themes.ThemeOpenTKBase",
-      "Medja.OpenTk.Window.OpenTkWindow"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.TextControlRendererBase",
-    "to": [
-      "Medja.Controls.TextControl",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase",
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Font",
-      "Medja.Primitives.Size",
-      "Medja.Primitives.TextAlignment"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.TextRenderer",
-    "to": [
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Font",
-      "Medja.Primitives.Size",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.ThemeOpenTKBase",
-    "to": [
-      "Medja.Controls.Container.TransformContainer",
-      "Medja.OpenTk.Controls.OpenGLEventControl",
-      "Medja.OpenTk.Controls.OpenGLEventControlRenderer",
-      "Medja.OpenTk.Themes.TransformContainerRenderer",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.TransformContainerRenderer",
-    "to": [
-      "Medja.Controls.Container.TransformContainer",
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Themes.WindowRenderer",
-    "to": [
-      "Medja.OpenTk.Themes.SkiaControlRendererBase"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Utils.ListExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Utils.PrimitiveConverterExtensions",
-    "to": [
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Font",
-      "Medja.Primitives.FontStyle",
-      "Medja.Primitives.Point"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Utils.SkiaExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Utils.VectorExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.OpenTk.Window.MedjaWindowExtensions",
-    "to": [
-      "Medja.Primitives.Size"
-    ]
-  },
-  {
-    "from": "Medja.OpenTk.Window.OpenTkWindow",
-    "to": [
-      "Medja.Controls.ControlHierarchy",
-      "Medja.Controls.FocusManager",
-      "Medja.Controls.Window",
-      "Medja.Controls.WindowState",
-      "Medja.OpenTk.Input.OpenTkKeyboardHandler",
-      "Medja.OpenTk.Input.OpenTkMouseHandler",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings",
-      "Medja.OpenTk.OpenGLVersion",
-      "Medja.OpenTk.Rendering.OpenTkRenderer",
-      "Medja.Properties.PropertyChangedEventArgs",
-      "Medja.Utils.FramesPerSecondLimiter"
-    ]
-  },
-  {
-    "from": "Medja.PagedListView",
+    "from": "Medja.PagedListView\u00601",
     "to": []
   },
   {
@@ -1871,10 +697,7 @@
     "from": "Medja.Primitives.Font",
     "to": [
       "Medja.Primitives.Color",
-      "Medja.Primitives.Colors",
-      "Medja.Primitives.FontStyle",
-      "Medja.Primitives.Size",
-      "Medja.Properties.Property"
+      "Medja.Primitives.FontStyle"
     ]
   },
   {
@@ -1886,21 +709,18 @@
     "to": []
   },
   {
-    "from": "Medja.Primitives.MedjaValues",
-    "to": []
-  },
-  {
     "from": "Medja.Primitives.MRect",
     "to": [
-      "Medja.Primitives.Rect",
-      "Medja.Properties.Property"
+      "Medja.Primitives.Rect"
     ]
   },
   {
     "from": "Medja.Primitives.MVector2D",
-    "to": [
-      "Medja.Properties.Property"
-    ]
+    "to": []
+  },
+  {
+    "from": "Medja.Primitives.MedjaValues",
+    "to": []
   },
   {
     "from": "Medja.Primitives.Orientation",
@@ -1947,9 +767,7 @@
   },
   {
     "from": "Medja.Primitives.Thickness",
-    "to": [
-      "Medja.Properties.Property"
-    ]
+    "to": []
   },
   {
     "from": "Medja.Primitives.Vector2D",
@@ -1966,498 +784,8 @@
     "to": []
   },
   {
-    "from": "Medja.Properties.AttachedProperties",
-    "to": [
-      "Medja.Properties.IProperty",
-      "Medja.Properties.Property",
-      "Medja.Utils.Collections.Generic.IDictionaryExtensions"
-    ]
-  },
-  {
-    "from": "Medja.Properties.AttachedPropertyIdFactory",
-    "to": []
-  },
-  {
-    "from": "Medja.Properties.Binding.Binding",
-    "to": [
-      "Medja.Properties.Binding.IBinding",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Binding.BindingExtensions",
-    "to": [
-      "Medja.Properties.Binding.Binding",
-      "Medja.Properties.Binding.TwoWayBinding",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyWrapper"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Binding.IBinding",
-    "to": []
-  },
-  {
-    "from": "Medja.Properties.Binding.MultiBinding",
-    "to": [
-      "Medja.Properties.Binding.IBinding",
-      "Medja.Properties.IProperty",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Binding.MultiBindingFactories",
-    "to": [
-      "Medja.Properties.Binding.MultiBinding",
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Binding.TwoWayBinding",
-    "to": [
-      "Medja.Properties.Binding.Binding",
-      "Medja.Properties.Binding.IBinding",
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.Changes.CollectionPropertyChange",
-    "to": [
-      "Medja.Properties.ChangeTracking.Changes.PropertyChange"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.Changes.PropertyChange",
-    "to": []
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.Changes.SubListItemChanges",
-    "to": [
-      "Medja.Properties.ChangeTracking.Changes.PropertyChange"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.Changes.SubPropertyChanges",
-    "to": [
-      "Medja.Properties.ChangeTracking.Changes.PropertyChange"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.Changes.ValuePropertyChange",
-    "to": [
-      "Medja.Properties.ChangeTracking.Changes.PropertyChange"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.IMedjaObservableCollection",
-    "to": []
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.IUndoable",
-    "to": [
-      "Medja.Properties.ChangeTracking.PropertyRegistry"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.MedjaObservableCollection",
-    "to": [
-      "Medja.Properties.ChangeTracking.IMedjaObservableCollection"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.PropertyCollectionChangedHandler",
-    "to": [
-      "Medja.Properties.ChangeTracking.Changes.CollectionPropertyChange",
-      "Medja.Properties.ChangeTracking.IMedjaObservableCollection"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.PropertyRegistry",
-    "to": [
-      "Medja.Properties.ChangeTracking.Changes.CollectionPropertyChange",
-      "Medja.Properties.ChangeTracking.Changes.PropertyChange",
-      "Medja.Properties.ChangeTracking.Changes.SubListItemChanges",
-      "Medja.Properties.ChangeTracking.Changes.SubPropertyChanges",
-      "Medja.Properties.ChangeTracking.Changes.ValuePropertyChange",
-      "Medja.Properties.ChangeTracking.IMedjaObservableCollection",
-      "Medja.Properties.ChangeTracking.IUndoable",
-      "Medja.Properties.ChangeTracking.RegisteredProperty",
-      "Medja.Properties.ChangeTracking.RegisteredPropertyMap",
-      "Medja.Properties.IProperty",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.RegisteredProperty",
-    "to": [
-      "Medja.Properties.ChangeTracking.Changes.CollectionPropertyChange",
-      "Medja.Properties.ChangeTracking.IMedjaObservableCollection",
-      "Medja.Properties.ChangeTracking.PropertyCollectionChangedHandler",
-      "Medja.Properties.IProperty",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ChangeTracking.RegisteredPropertyMap",
-    "to": [
-      "Medja.Properties.ChangeTracking.RegisteredProperty",
-      "Medja.Properties.IProperty",
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Converters",
-    "to": []
-  },
-  {
-    "from": "Medja.Properties.EqualityComparerCache",
-    "to": []
-  },
-  {
-    "from": "Medja.Properties.IProperty",
-    "to": []
-  },
-  {
-    "from": "Medja.Properties.IPropertyExtensions",
-    "to": [
-      "Medja.Properties.IProperty"
-    ]
-  },
-  {
-    "from": "Medja.Properties.NotNullProperty",
-    "to": [
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.OverwritableProperty",
-    "to": [
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Property",
-    "to": [
-      "Medja.Properties.EqualityComparerCache",
-      "Medja.Properties.IProperty",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.Properties.PropertyChangedEventArgs",
-    "to": []
-  },
-  {
-    "from": "Medja.Properties.PropertyWrapper",
-    "to": [
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Test.Binding.BindingTest",
-    "to": [
-      "Medja.Properties.Binding.Binding",
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Test.Binding.MultiBindingFactoriesTest",
-    "to": [
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Test.Binding.MultiBindingTest",
-    "to": [
-      "Medja.Properties.Binding.MultiBinding",
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Test.ChangeTracking.IUndoableTestObj",
-    "to": [
-      "Medja.Properties.ChangeTracking.IUndoable",
-      "Medja.Properties.ChangeTracking.MedjaObservableCollection",
-      "Medja.Properties.ChangeTracking.PropertyRegistry",
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Test.ChangeTracking.PropertyRegistryTest",
-    "to": [
-      "Medja.Properties.ChangeTracking.Changes.CollectionPropertyChange",
-      "Medja.Properties.ChangeTracking.Changes.SubListItemChanges",
-      "Medja.Properties.ChangeTracking.Changes.SubPropertyChanges",
-      "Medja.Properties.ChangeTracking.Changes.ValuePropertyChange",
-      "Medja.Properties.ChangeTracking.MedjaObservableCollection",
-      "Medja.Properties.ChangeTracking.PropertyRegistry",
-      "Medja.Properties.Property",
-      "Medja.Properties.Test.ChangeTracking.IUndoableTestObj"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Test.Helpers.DemoObj",
-    "to": [
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Test.NotNullPropertyTest",
-    "to": [
-      "Medja.Properties.NotNullProperty"
-    ]
-  },
-  {
-    "from": "Medja.Properties.Test.PropertyTest",
-    "to": [
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Properties.ThreadSafeProperty",
-    "to": [
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.ProtoBuf.MessageParserExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.ProtoBuf.ProtoBufReader",
-    "to": [
-      "Medja.ProtoBuf.ProtoBufReaderWriterBase",
-      "Medja.ProtoBuf.ProtoBufStreamIndex"
-    ]
-  },
-  {
-    "from": "Medja.ProtoBuf.ProtoBufReaderWriterBase",
-    "to": [
-      "Medja.ProtoBuf.ProtoBufTypeRegistry"
-    ]
-  },
-  {
-    "from": "Medja.ProtoBuf.ProtoBufStreamIndex",
-    "to": []
-  },
-  {
-    "from": "Medja.ProtoBuf.ProtoBufTypeRegistry",
-    "to": []
-  },
-  {
-    "from": "Medja.ProtoBuf.ProtoBufWriter",
-    "to": [
-      "Medja.ProtoBuf.ProtoBufReaderWriterBase"
-    ]
-  },
-  {
-    "from": "Medja.ProtoBuf.Test.proto.ProtoTestObj",
-    "to": [
-      "Medja.ProtoBuf.Test.proto.ProtoTestObjReflection"
-    ]
-  },
-  {
-    "from": "Medja.ProtoBuf.Test.proto.ProtoTestObjReflection",
-    "to": [
-      "Medja.ProtoBuf.Test.proto.ProtoTestObj"
-    ]
-  },
-  {
-    "from": "Medja.ProtoBuf.Test.ProtoBufReaderAndWriterTests",
-    "to": [
-      "Medja.ProtoBuf.ProtoBufReader",
-      "Medja.ProtoBuf.ProtoBufWriter",
-      "Medja.ProtoBuf.Test.proto.ProtoTestObj"
-    ]
-  },
-  {
     "from": "Medja.ShutdownEventArgs",
     "to": []
-  },
-  {
-    "from": "Medja.Test.Controls.ComboBox.ComboBoxEnumBindingTest",
-    "to": [
-      "Medja.ComboBoxEnumBinding",
-      "Medja.Controls.Menu.MenuItem",
-      "Medja.Properties.Property",
-      "Medja.Test.Controls.ComboBox.MyEnum",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.ComboBox.ComboBoxTest",
-    "to": [
-      "Medja.Controls.ComboBox",
-      "Medja.Controls.ComboBoxMenuItem",
-      "Medja.Controls.Control",
-      "Medja.Controls.Menu.MenuItem",
-      "Medja.Controls.Popup",
-      "Medja.Controls.TextBlock",
-      "Medja.Controls.Window",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.ComboBox.MyEnum",
-    "to": []
-  },
-  {
-    "from": "Medja.Test.Controls.Container.ContentControlTest",
-    "to": [
-      "Medja.Controls.Container.ContentControl",
-      "Medja.Controls.Control"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.ControlHierarchyTest",
-    "to": [
-      "Medja.Controls.Buttons.Button",
-      "Medja.Controls.Container.ContentControl",
-      "Medja.Controls.ControlHierarchy",
-      "Medja.Primitives.Visibility",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.ControlTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Primitives.Visibility"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.Graph2D.CachedDataPointsTest",
-    "to": []
-  },
-  {
-    "from": "Medja.Test.Controls.Graph2D.DataPointsTest",
-    "to": [
-      "Medja.Controls.Graph2D.DataPoints",
-      "Medja.Controls.Graph2D.DataPointsRenderingSettings",
-      "Medja.Primitives.Point"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.Graph2D.Graph2DAxisTest",
-    "to": [
-      "Medja.Controls.Graph2D.Graph2DAxis",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.Graph2D.Graph2DTest",
-    "to": [
-      "Medja.Primitives.Point",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.NumericKeypadTextFactoryTest",
-    "to": [
-      "Medja.Controls.NumericKeypadTextFactory",
-      "Medja.Globalization",
-      "Medja.Utils.MedjaAssert"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.Panels.HorizontalStackPanelTest",
-    "to": []
-  },
-  {
-    "from": "Medja.Test.Controls.Panels.PanelTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.Panels.Panel",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.Panels.VerticalStackPanelTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.Panels.VerticalStackPanel",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.TextControlTest",
-    "to": [
-      "Medja.Controls.TextControl",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.TextEditor.CaretTest",
-    "to": [
-      "Medja.Controls.TextEditor.Caret"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.TextEditor.TextEditorTest",
-    "to": [
-      "Medja.Controls.TextEditor.Caret",
-      "Medja.Controls.TextEditor.TextEditor",
-      "Medja.Input.InputState",
-      "Medja.Input.KeyboardEventArgs",
-      "Medja.Input.Keys",
-      "Medja.Input.ModifierKeys",
-      "Medja.Theming.ControlFactory",
-      "Medja.Utils.MedjaAssert"
-    ]
-  },
-  {
-    "from": "Medja.Test.Controls.WindowTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.Window",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Primitives.RectTest",
-    "to": [
-      "Medja.Primitives.Rect"
-    ]
-  },
-  {
-    "from": "Medja.Test.Theming.ControlFactoryExtensionsTest",
-    "to": [
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Theming.ControlFactoryTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.Panels.Panel",
-      "Medja.Controls.TouchItemList",
-      "Medja.Theming.ControlFactory"
-    ]
-  },
-  {
-    "from": "Medja.Test.Utils.ExclusiveOrSelectorTest",
-    "to": [
-      "Medja.Test.Utils.Selectable",
-      "Medja.Utils.ExclusiveOrSelector"
-    ]
-  },
-  {
-    "from": "Medja.Test.Utils.Selectable",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Properties.Property"
-    ]
-  },
-  {
-    "from": "Medja.Test.Utils.TextWrapperTest",
-    "to": [
-      "Medja.Primitives.TextWrapping",
-      "Medja.Utils.TextWrapper"
-    ]
   },
   {
     "from": "Medja.Theming.ControlFactory",
@@ -2504,7 +832,7 @@
       "Medja.Controls.TextBox",
       "Medja.Controls.TextControl",
       "Medja.Controls.TextEditor.TextEditor",
-      "Medja.Controls.TouchItemList",
+      "Medja.Controls.TouchItemList\u00601",
       "Medja.Controls.VerticalScrollBar",
       "Medja.Controls.Window",
       "Medja.Primitives.Font",
@@ -2512,11 +840,10 @@
     ]
   },
   {
-    "from": "Medja.Theming.ControlRendererBase",
+    "from": "Medja.Theming.ControlRendererBase\u00602",
     "to": [
       "Medja.Controls.Control",
       "Medja.Primitives.MRect",
-      "Medja.Properties.PropertyChangedEventArgs",
       "Medja.Theming.IControlRenderer"
     ]
   },
@@ -2544,81 +871,6 @@
     ]
   },
   {
-    "from": "Medja.Utils.ArraySegmentExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.ByteArrayExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.ByteSize",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Collections.Concurrent.ConcurrentHashSet",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Collections.Concurrent.ConcurrentQueueExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Collections.Generic.IDictionaryExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Collections.Generic.Map",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Collections.Generic.ReferenceEqualityComparer",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Collections.Generic.RingBuffer",
-    "to": [
-      "Medja.Utils.Collections.Generic.RingBufferEnumerator",
-      "Medja.Utils.Collections.Generic.RingBufferEventArgs",
-      "Medja.Utils.Collections.Generic.RingBufferOperation"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Collections.Generic.RingBufferEnumerator",
-    "to": [
-      "Medja.Utils.Collections.Generic.RingBuffer"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Collections.Generic.RingBufferEventArgs",
-    "to": [
-      "Medja.Utils.Collections.Generic.RingBufferOperation"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Collections.Generic.RingBufferOperation",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.CommandLineArgument",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.CommandLineArgumentParser",
-    "to": [
-      "Medja.Utils.CommandLineArgument",
-      "Medja.Utils.CommandLineHelpPrinter",
-      "Medja.Utils.PositionalArgumentsEnumerator"
-    ]
-  },
-  {
-    "from": "Medja.Utils.CommandLineHelpPrinter",
-    "to": [
-      "Medja.Utils.CommandLineArgument",
-      "Medja.Utils.CommandLineArgumentParser"
-    ]
-  },
-  {
     "from": "Medja.Utils.ControlExtensions",
     "to": [
       "Medja.Controls.Control",
@@ -2633,23 +885,12 @@
   },
   {
     "from": "Medja.Utils.EqualityUtils",
-    "to": [
-      "Medja.Properties.EqualityComparerCache",
-      "Medja.Utils.Collections.Generic.ReferenceEqualityComparer"
-    ]
+    "to": []
   },
   {
-    "from": "Medja.Utils.ExclusiveOrSelector",
+    "from": "Medja.Utils.ExclusiveOrSelector\u00601",
     "to": [
-      "Medja.Controls.Control",
-      "Medja.Properties.Property",
-      "Medja.Properties.PropertyChangedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.Utils.FramesPerSecondCounter",
-    "to": [
-      "Medja.Utils.ValueEventArgs"
+      "Medja.Controls.Control"
     ]
   },
   {
@@ -2661,80 +902,11 @@
     "to": []
   },
   {
-    "from": "Medja.Utils.IO.FileCreatedEventArgs",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.IO.FileCreatedWatcher",
-    "to": [
-      "Medja.Utils.IO.FileCreatedEventArgs",
-      "Medja.Utils.IO.PathUtils"
-    ]
-  },
-  {
-    "from": "Medja.Utils.IO.FileCreationWatcher",
-    "to": [
-      "Medja.Utils.IO.FileCreatedEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.Utils.IO.FileFollowReader",
-    "to": [
-      "Medja.Utils.IO.PathUtils",
-      "Medja.Utils.IO.ReadEventArgs"
-    ]
-  },
-  {
-    "from": "Medja.Utils.IO.MultiFileManager",
-    "to": [
-      "Medja.Utils.IO.SequentialFileNames"
-    ]
-  },
-  {
-    "from": "Medja.Utils.IO.MultiFileStream",
-    "to": [
-      "Medja.Utils.IO.MultiFileManager",
-      "Medja.Utils.IO.MultiFileStreamSettings"
-    ]
-  },
-  {
-    "from": "Medja.Utils.IO.MultiFileStreamSettings",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.IO.PathUtils",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.IO.ReadEventArgs",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.IO.SequentialFileNames",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.IO.StreamExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Linq.LinqExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.MedjaAssert",
-    "to": []
-  },
-  {
     "from": "Medja.Utils.MedjaDebug",
     "to": [
       "Medja.Controls.Control",
       "Medja.Utils.ControlTreeStringBuilder"
     ]
-  },
-  {
-    "from": "Medja.Utils.MedjaMath",
-    "to": []
   },
   {
     "from": "Medja.Utils.MedjaUIMath",
@@ -2743,172 +915,10 @@
     ]
   },
   {
-    "from": "Medja.Utils.OperationSystem",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.OperationSystemInfo",
-    "to": [
-      "Medja.Utils.OperationSystem"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Performance.Profiler",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.PositionalArgumentsEnumerator",
-    "to": [
-      "Medja.Utils.CommandLineArgument"
-    ]
-  },
-  {
-    "from": "Medja.Utils.RandomExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Reflection.AssemblyExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Reflection.TypeExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Serialization.IMedjaSerializer",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Serialization.MedjaSerializer",
-    "to": [
-      "Medja.Utils.Serialization.IMedjaSerializer"
-    ]
-  },
-  {
     "from": "Medja.Utils.TaskQueueFinder",
     "to": [
       "Medja.Controls.Control",
-      "Medja.Controls.Window",
-      "Medja.Utils.Threading.Tasks.TaskQueue"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.Collections.Concurrent.ConcurrentHashSetTest",
-    "to": [
-      "Medja.Utils.Collections.Concurrent.ConcurrentHashSet",
-      "Medja.Utils.Threading.Tasks.TaskHelper"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.Collections.Generic.RingBufferTest",
-    "to": [
-      "Medja.Utils.Collections.Generic.RingBuffer"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.CommandLineArgumentParserTest",
-    "to": [
-      "Medja.Utils.CommandLineArgument",
-      "Medja.Utils.CommandLineArgumentParser"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.IO.FileCreatedWatcherTest",
-    "to": [
-      "Medja.Utils.IO.FileCreatedWatcher"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.IO.FileFollowReaderTest",
-    "to": [
-      "Medja.Utils.IO.FileFollowReader"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.IO.MultiFileStreamTest",
-    "to": [
-      "Medja.Utils.IO.MultiFileStream",
-      "Medja.Utils.IO.MultiFileStreamSettings"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.IO.PathUtilsTest",
-    "to": [
-      "Medja.Utils.IO.PathUtils"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.IO.SequentialFileNamesTest",
-    "to": [
-      "Medja.Utils.IO.SequentialFileNames"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.MedjaAssertTest",
-    "to": [
-      "Medja.Utils.MedjaAssert"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.MedjaMathTest",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Test.Testing.TestFileNameTest",
-    "to": [
-      "Medja.Utils.Testing.TestFileName"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.Text.PeekBufferTest",
-    "to": [
-      "Medja.Utils.Text.PeekBuffer"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.Text.StringExtensionsTest",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Test.Text.TextReaderNavigatorTest",
-    "to": [
-      "Medja.Utils.Text.TextReaderNavigator"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Test.Threading.Tasks.TaskQueueTest",
-    "to": [
-      "Medja.Utils.Threading.Tasks.TaskQueue"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Testing.TestFileName",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Text.Digits",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Text.ExpectException",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Text.PeekBuffer",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Text.StringBuilderExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Text.StringExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Text.TextReaderNavigator",
-    "to": [
-      "Medja.Utils.Text.PeekBuffer"
+      "Medja.Controls.Window"
     ]
   },
   {
@@ -2916,366 +926,5 @@
     "to": [
       "Medja.Primitives.TextWrapping"
     ]
-  },
-  {
-    "from": "Medja.Utils.Threading.ReaderWriterLockSlimExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Threading.Tasks.TaskHelper",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Threading.Tasks.TaskQueue",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Threading.Tasks.TaskQueueExtensions",
-    "to": [
-      "Medja.Utils.Threading.Tasks.TaskQueue"
-    ]
-  },
-  {
-    "from": "Medja.Utils.Threading.ThreadSafeUlong",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.Threading.WaitHandleExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.Utils.ValueEventArgs",
-    "to": []
-  },
-  {
-    "from": "Medja.ZeroMQ.ZeroMQExtensions",
-    "to": []
-  },
-  {
-    "from": "Medja.ZeroMQ.ZeroMQManager",
-    "to": [
-      "Medja.Utils.Collections.Concurrent.ConcurrentHashSet",
-      "Medja.Utils.Collections.Generic.ReferenceEqualityComparer",
-      "Medja.ZeroMQ.ZeroMQSettings",
-      "Medja.ZeroMQ.ZeroMQSocket"
-    ]
-  },
-  {
-    "from": "Medja.ZeroMQ.ZeroMQSettings",
-    "to": []
-  },
-  {
-    "from": "Medja.ZeroMQ.ZeroMQSocket",
-    "to": [
-      "Medja.ZeroMQ.ZeroMQManager",
-      "Medja.ZeroMQ.ZeroMQSettings"
-    ]
-  },
-  {
-    "from": "Medja.ZeroMQ.ZeroMQThreadFactory",
-    "to": [
-      "Medja.ZeroMQ.ZeroMQSettings",
-      "Medja.ZeroMQ.ZeroMQSocket"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.MainClass",
-    "to": [
-      "Medja.Controls.Window",
-      "Medja.MedjaApplication",
-      "Medja.OpenTk.MedjaOpenTkLibrary",
-      "Medja.OpenTk.MedjaOpenTKWindowSettings",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlue",
-      "Medja.Primitives.Colors",
-      "MedjaOpenGlTestApp.Tests.ImageButtonTest"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.ButtonTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.ContentControlTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Primitives.Colors",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Primitives.VerticalAlignment",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.DialogTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Primitives.Colors",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.DockPanelTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Primitives.Colors",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Primitives.VerticalAlignment",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.ImageButtonTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.Image",
-      "Medja.OpenTk.Themes.DarkBlue.ButtonBackgroundRenderer",
-      "Medja.OpenTk.Themes.DarkBlue.ThemeDarkBlue",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.MultithreadingTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.TextBlock",
-      "Medja.Theming.IControlFactory",
-      "Medja.Utils.TaskQueueFinder",
-      "Medja.Utils.Threading.Tasks.TaskQueue"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.MyItemType",
-    "to": []
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.NumericKeypadTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.TextBox",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.Performance.ButtonRendererPerformance",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.OpenTk.Themes.FramesPerSecondCounterRenderer",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.Performance.BytesToInt32PerfTest",
-    "to": []
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.Performance.Graph2DTest",
-    "to": []
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.Performance.SequentialFileNamePerfTest",
-    "to": [
-      "Medja.Utils.IO.SequentialFileNames"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.ScrollableContainerTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.TextBlock",
-      "Medja.Primitives.Colors",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.ScrollingGridTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Primitives.Colors",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.SideControlsContainerTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.TouchItemList",
-      "Medja.Primitives.Colors",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.SimpleDockPanelTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Primitives.Colors",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.SliderTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.Slider",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.TabControlTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Primitives.Colors",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.TextBoxTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.TextBox",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.TouchItemListTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Controls.TouchItemList",
-      "Medja.Theming.IControlFactory",
-      "MedjaOpenGlTestApp.Tests.MyItemType"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.VerticalStackPanelTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Primitives.Color",
-      "Medja.Primitives.Colors",
-      "Medja.Primitives.HorizontalAlignment",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "MedjaOpenGlTestApp.Tests.VisibilityTest",
-    "to": [
-      "Medja.Controls.Control",
-      "Medja.Primitives.Visibility",
-      "Medja.Theming.IControlFactory"
-    ]
-  },
-  {
-    "from": "Menu.Command",
-    "to": []
-  },
-  {
-    "from": "Menu.Menu",
-    "to": [
-      "Menu.Command",
-      "Menu.MenuItem"
-    ]
-  },
-  {
-    "from": "Menu.MenuItem",
-    "to": [
-      "Medja.Properties.Property",
-      "Menu.Command"
-    ]
-  },
-  {
-    "from": "Menu.Program",
-    "to": [
-      "Menu.Command",
-      "Menu.Menu",
-      "Menu.MenuItem"
-    ]
-  },
-  {
-    "from": "MultiOpenGLContext.Context",
-    "to": [
-      "MultiOpenGLContext.ContextActions"
-    ]
-  },
-  {
-    "from": "MultiOpenGLContext.ContextActions",
-    "to": []
-  },
-  {
-    "from": "MultiOpenGLContext.FrameBufferObject",
-    "to": []
-  },
-  {
-    "from": "MultiOpenGLContext.GlContextManager",
-    "to": [
-      "MultiOpenGLContext.Context"
-    ]
-  },
-  {
-    "from": "MultiOpenGLContext.GlObject",
-    "to": [
-      "MultiOpenGLContext.Vertex"
-    ]
-  },
-  {
-    "from": "MultiOpenGLContext.Program",
-    "to": [
-      "MultiOpenGLContext.Context",
-      "MultiOpenGLContext.GlContextManager",
-      "MultiOpenGLContext.GlObject",
-      "MultiOpenGLContext.ShaderFactory",
-      "MultiOpenGLContext.Vertex"
-    ]
-  },
-  {
-    "from": "MultiOpenGLContext.ShaderFactory",
-    "to": []
-  },
-  {
-    "from": "MultiOpenGLContext.Vertex",
-    "to": []
-  },
-  {
-    "from": "OpenGL_FBO.Program",
-    "to": [
-      "MultiOpenGLContext.GlObject",
-      "MultiOpenGLContext.ShaderFactory",
-      "MultiOpenGLContext.Vertex"
-    ]
-  },
-  {
-    "from": "ReadFileContinously.FileFollowReader",
-    "to": [
-      "ReadFileContinously.ReadEventArgs"
-    ]
-  },
-  {
-    "from": "ReadFileContinously.Program",
-    "to": [
-      "ReadFileContinously.FileFollowReader"
-    ]
-  },
-  {
-    "from": "ReadFileContinously.ReadEventArgs",
-    "to": []
-  },
-  {
-    "from": "SignallingLoopPerformance.FramesPerSecondLimiter",
-    "to": []
-  },
-  {
-    "from": "SignallingLoopPerformance.Program",
-    "to": [
-      "SignallingLoopPerformance.FramesPerSecondLimiter"
-    ]
-  },
-  {
-    "from": "SkiaSharp_CanvasPartialClear.Program",
-    "to": []
-  },
-  {
-    "from": "SkiaSharp_RenderingPerformance.Program",
-    "to": []
   }
 ]

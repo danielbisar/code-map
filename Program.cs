@@ -7,12 +7,21 @@ class Program
         if (args.Length == 0)
             return Usage();
 
-        return args[0] switch
+        try
         {
-            "scan" when args.Length >= 2 => Scanner.Run(args[1]),
-            "gen-html" => HtmlGenerator.Run(),
-            _ => Usage()
-        };
+            return args switch
+            {
+                ["scan", var dir] => Scanner.Run(dir),
+                ["gen-html"] => HtmlGenerator.Run(),
+                _ => Usage()
+            };
+        }
+        catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException or
+                                       System.Text.Json.JsonException or ArgumentException)
+        {
+            Console.Error.WriteLine($"error: {ex.Message}");
+            return 1;
+        }
     }
 
     static int Usage()

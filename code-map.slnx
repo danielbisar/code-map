@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/code-map.Tests/code-map.Tests.csproj" />
+  </Folder>
+  <Project Path="code-map.csproj" />
+</Solution>
